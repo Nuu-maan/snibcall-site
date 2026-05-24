@@ -1,13 +1,11 @@
 import { Starfield } from "@/components/decor/starfield";
 import { CTA } from "@/components/sections/cta";
 import { Footer } from "@/components/sections/footer";
+import { HelpPeek } from "@/components/sections/help-peek";
 import { Hero } from "@/components/sections/hero";
-import { Integrations } from "@/components/sections/integrations";
-import { Moderation } from "@/components/sections/moderation";
-import { MoreFeatures } from "@/components/sections/more-features";
+import { HowItWorks } from "@/components/sections/how-it-works";
 import { Nav } from "@/components/sections/nav";
-import { Stats } from "@/components/sections/stats";
-import { Voicemaster } from "@/components/sections/voicemaster";
+import { WhatItDoes } from "@/components/sections/what-it-does";
 
 export default function Home() {
   return (
@@ -16,11 +14,9 @@ export default function Home() {
       <main className="relative mx-auto w-full max-w-5xl px-6">
         <Nav />
         <Hero />
-        <Stats />
-        <Moderation />
-        <Integrations />
-        <Voicemaster />
-        <MoreFeatures />
+        <WhatItDoes />
+        <HowItWorks />
+        <HelpPeek />
         <CTA />
       </main>
       <Footer />
