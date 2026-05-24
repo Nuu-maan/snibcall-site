@@ -26,7 +26,7 @@ export function FloatingCard({
   return (
     <div
       className={cn(
-        "glow-pink-sm inline-flex items-center gap-3 rounded-2xl border border-pink-500/15 bg-card-tinted px-5 py-4 ring-pink-soft backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-pink-500/30",
+        "glow-pink-sm inline-flex items-center gap-3 rounded-2xl border border-pink-500/15 bg-card-tinted px-5 py-4 ring-pink-soft transition-colors duration-300 hover:border-pink-500/30",
         rotationMap[rotation],
         className
       )}

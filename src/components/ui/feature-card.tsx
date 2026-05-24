@@ -36,7 +36,7 @@ export function FeatureCard({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-[2.5rem] border p-8 ring-pink-soft transition-all duration-300 hover:border-pink-500/20",
+        "group relative overflow-hidden rounded-[2.5rem] border p-8 ring-pink-soft transition-colors duration-300 hover:border-pink-500/20",
         toneClass[tone],
         glow && "glow-pink-sm",
         visualPosition === "right" && "flex flex-col md:flex-row md:gap-8",
