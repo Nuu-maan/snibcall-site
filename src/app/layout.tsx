@@ -1,6 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import {
+  INVITE_URL,
+  SITE_DESCRIPTION,
+  SITE_KEYWORDS,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
+  SUPPORT_URL,
+} from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
@@ -16,9 +25,102 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "snibcall — a tiny phone for your server",
-  description:
-    "connect two discord servers and chat across them. messages relay via webhook with each user's name + avatar.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    template: `%s — ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  authors: [{ name: "snibcall" }],
+  creator: "snibcall",
+  publisher: "snibcall",
+  keywords: SITE_KEYWORDS,
+  category: "technology",
+  classification: "Discord Bot",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    creator: "@snibcall",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  formatDetection: {
+    email: false,
+    telephone: false,
+    address: false,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#121213" },
+    { media: "(prefers-color-scheme: light)", color: "#121213" },
+  ],
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+};
+
+// JSON-LD structured data — helps Google show the bot as a SoftwareApplication
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      inLanguage: "en-US",
+      publisher: { "@id": `${SITE_URL}/#org` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#org`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: `${SITE_URL}/icon`,
+      sameAs: [SUPPORT_URL],
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${SITE_URL}/#app`,
+      name: SITE_NAME,
+      applicationCategory: "CommunicationApplication",
+      operatingSystem: "Discord",
+      description: SITE_DESCRIPTION,
+      url: SITE_URL,
+      downloadUrl: INVITE_URL,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      publisher: { "@id": `${SITE_URL}/#org` },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -35,8 +137,16 @@ export default function RootLayout({
       )}
       lang="en"
     >
-      <body className="flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-foreground antialiased">
+      <body
+        className="flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-foreground antialiased"
+        data-scroll-behavior="smooth"
+      >
         {children}
+        <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD is generated server-side from trusted constants.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          type="application/ld+json"
+        />
       </body>
     </html>
   );

@@ -1,13 +1,16 @@
 "use client";
 
 import {
+  Activity03Icon,
   ArrowLeft02Icon,
   Call02Icon,
   Cancel01Icon,
   CheckmarkBadge02Icon,
   Copy01Icon,
+  EyeIcon,
   FavouriteIcon,
   HelpCircleIcon,
+  IncognitoIcon,
   PhoneOff01Icon,
   Search01Icon,
   Shield01Icon,
@@ -75,6 +78,28 @@ const commands: Command[] = [
     needs: ["must be in a call"],
   },
   {
+    name: "s.mask",
+    aliases: ["s.anon"],
+    category: "social",
+    icon: IncognitoIcon,
+    description:
+      "hide your name and avatar — turn anonymous. run again to reroll a new identity.",
+    usage: "s.mask",
+    cooldown: "5s",
+    needs: [],
+  },
+  {
+    name: "s.unmask",
+    aliases: [],
+    category: "social",
+    icon: EyeIcon,
+    description:
+      "remove your mask. your messages appear with your real name + avatar again.",
+    usage: "s.unmask",
+    cooldown: "3s",
+    needs: [],
+  },
+  {
     name: "s.block",
     aliases: [],
     category: "moderation",
@@ -112,6 +137,17 @@ const commands: Command[] = [
     icon: HelpCircleIcon,
     description: "show the help menu, or a detailed page for one command.",
     usage: "s.help [command]",
+    cooldown: "3s",
+    needs: [],
+  },
+  {
+    name: "s.ping",
+    aliases: ["s.p"],
+    category: "misc",
+    icon: Activity03Icon,
+    description:
+      "tiny health check — gateway latency and how long the bot has been up.",
+    usage: "s.ping",
     cooldown: "3s",
     needs: [],
   },

@@ -34,10 +34,16 @@ const commandRows: CommandRow[] = [
     cmd: "s.friend (s.fr)",
     desc: "share your discord handle with the other side.",
   },
+  {
+    cmd: "s.mask (s.anon)",
+    desc: "hide your name and avatar — turn anonymous.",
+  },
+  { cmd: "s.unmask", desc: "remove your mask and show your real name again." },
   { cmd: "s.block", desc: "block a server from matching with yours." },
   { cmd: "s.unblock", desc: "unblock a previously blocked server." },
   { cmd: "s.blocks", desc: "list every server you've blocked." },
   { cmd: "s.help", desc: "open the help menu, or one command in detail." },
+  { cmd: "s.ping (s.p)", desc: "check the bot's latency and uptime." },
 ];
 
 const tips = [
