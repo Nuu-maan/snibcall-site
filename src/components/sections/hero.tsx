@@ -66,7 +66,7 @@ export function Hero() {
             v1 — Public beta
           </span>
 
-          <h1 className="font-normal text-[48px] text-foreground leading-[1] tracking-[-0.03em] sm:text-[60px] md:text-[72px]">
+          <h1 className="font-normal text-[44px] text-foreground leading-[1] tracking-[-0.03em] sm:text-[56px] lg:text-[68px] xl:text-[72px]">
             <span className="inline-block animate-[fade-up_700ms_cubic-bezier(0.23,1,0.32,1)_80ms_both]">
               A
             </span>{" "}
