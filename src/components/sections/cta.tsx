@@ -1,53 +1,31 @@
-import {
-  ArrowRight02Icon,
-  Call02Icon,
-  CheckmarkBadge02Icon,
-} from "@hugeicons/core-free-icons";
+import { ArrowRight02Icon, Call02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 
-import { GradientText } from "@/components/ui/gradient-text";
-
 export function CTA() {
   return (
-    <section className="reveal-on-scroll cv-auto relative flex flex-col items-center gap-7 overflow-hidden py-32 text-center">
-      {/* contained ambient — centered & soft, no hard edge */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[36rem] w-[60rem] -translate-x-1/2 -translate-y-1/2"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, oklch(0.7 0.27 350 / 0.18) 0%, transparent 60%)",
-        }}
-      />
+    <section className="cv-auto relative flex flex-col items-center gap-6 border-border/60 border-t py-24 text-center md:py-32">
+      <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-medium text-[11.5px] text-muted-foreground tracking-tight">
+        <span className="size-1.5 rounded-full bg-pink-500" />
+        Ready when you are
+      </span>
 
-      {/* top separator */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 left-1/2 -z-10 h-px w-full max-w-3xl -translate-x-1/2 bg-gradient-to-r from-transparent via-pink-500/40 to-transparent"
-      />
-
-      <div className="inline-flex items-center gap-2 rounded-full border border-pink-500/30 bg-pink-500/10 px-4 py-1.5 font-medium text-[12px] text-pink-200 tracking-tight ring-soft">
-        <HugeiconsIcon className="size-3.5" icon={Call02Icon} strokeWidth={2} />
-        ready when you are
-      </div>
-
-      <h2 className="max-w-3xl text-balance font-bold text-[36px] text-foreground leading-[110%] tracking-tight md:text-[52px]">
-        give your server a <GradientText>tiny phone.</GradientText>
+      <h2 className="max-w-2xl font-normal text-[40px] text-foreground leading-[1.05] tracking-[-0.03em] sm:text-[48px] md:text-[56px]">
+        Give your server a <em className="font-medium italic">tiny phone.</em>
       </h2>
 
-      <p className="max-w-xl text-pretty font-medium text-[17px] text-muted-foreground leading-[175%] tracking-tight">
-        free to add, no setup, runs in the background. type{" "}
-        <code className="rounded bg-pink-500/12 px-1.5 py-0.5 font-mono text-[14px] text-pink-200">
+      <p className="max-w-xl text-[16px] text-muted-foreground leading-[1.6] sm:text-[17px]">
+        Free to add, no setup, runs in the background. Type{" "}
+        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[14px] text-foreground">
           s.call
         </code>{" "}
-        and you&apos;re in a queue. when another server does the same —
+        and you&apos;re in a queue. When another server does the same —
         you&apos;re live.
       </p>
 
-      <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+      <div className="mt-2 flex w-full flex-col items-stretch justify-center gap-2.5 sm:w-auto sm:flex-row sm:items-center">
         <Link
-          className="shimmer-sweep inline-flex items-center gap-2.5 rounded-full bg-pink-500 px-7 py-3.5 font-semibold text-[16px] text-white tracking-tight transition-transform duration-300 hover:scale-[1.03] active:scale-[0.97]"
+          className="inline-flex items-center justify-center gap-2 rounded-md bg-pink-500 px-5 py-3 font-semibold text-[14.5px] text-white tracking-tight transition-colors hover:bg-pink-600"
           href="/invite"
         >
           <HugeiconsIcon
@@ -55,41 +33,23 @@ export function CTA() {
             icon={Call02Icon}
             strokeWidth={2.2}
           />
-          invite snibcall
+          Add to Discord
         </Link>
         <Link
-          className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3.5 font-semibold text-[16px] text-foreground tracking-tight transition-colors hover:border-pink-500/30 active:scale-[0.97]"
+          className="inline-flex items-center justify-center gap-1.5 rounded-md border border-border bg-card px-5 py-3 font-semibold text-[14.5px] text-foreground tracking-tight transition-colors hover:bg-secondary"
           href="/commands"
         >
-          browse commands
+          Browse commands
           <HugeiconsIcon
-            className="size-4"
+            className="size-3.5 opacity-70"
             icon={ArrowRight02Icon}
             strokeWidth={2.2}
           />
         </Link>
       </div>
 
-      {/* tiny "what you type" demo strip */}
-      <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-border bg-card-tinted px-4 py-2 ring-pink-soft">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-pink-500/12 px-2 py-0.5 font-mono font-semibold text-[10px] text-pink-200 lowercase tracking-wider">
-          <HugeiconsIcon
-            className="size-3"
-            icon={CheckmarkBadge02Icon}
-            strokeWidth={2}
-          />
-          step 1
-        </span>
-        <span className="font-mono text-[13px] text-muted-foreground">
-          <span className="text-pink-300">{">"}</span>{" "}
-          <span className="font-semibold text-pink-200">s.call</span>{" "}
-          <span className="text-muted-foreground/70">in any channel</span>
-        </span>
-        <span className="size-1.5 animate-status-pulse rounded-full bg-pink-400" />
-      </div>
-
-      <p className="font-mono text-[11px] text-muted-foreground/70 lowercase tracking-[0.16em]">
-        no signup · no dashboard · no card needed
+      <p className="mt-6 font-mono text-[11px] text-muted-foreground/80 uppercase tracking-[0.16em]">
+        No signup · No dashboard · No card needed
       </p>
     </section>
   );

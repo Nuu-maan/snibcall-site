@@ -2,16 +2,15 @@
 
 import {
   ArrowDown01Icon,
-  Book02Icon,
   Call02Icon,
   Home01Icon,
   Shield01Icon,
   SparklesIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-import { GradientText } from "@/components/ui/gradient-text";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 interface CommandRow {
@@ -60,17 +59,17 @@ const pages: HelpPage[] = [
     icon: Home01Icon,
     body: (
       <div className="flex flex-col gap-3">
-        <p className="font-medium text-[14px] text-foreground italic leading-[170%] tracking-tight">
+        <p className="text-[14px] text-foreground leading-[1.65]">
           a tiny phone for your server.
         </p>
-        <p className="font-medium text-[13px] text-muted-foreground leading-[170%] tracking-tight">
+        <p className="text-[13px] text-muted-foreground leading-[1.65]">
           run{" "}
-          <code className="rounded bg-pink-500/12 px-1.5 py-0.5 font-mono text-[12px] text-pink-200">
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             s.call
           </code>{" "}
           — when another server does the same, you&apos;re connected.
         </p>
-        <p className="font-medium text-[13px] text-muted-foreground leading-[170%] tracking-tight">
+        <p className="text-[13px] text-muted-foreground leading-[1.65]">
           messages relay both ways. it feels like one shared room.
         </p>
       </div>
@@ -84,18 +83,18 @@ const pages: HelpPage[] = [
       <ul className="flex flex-col gap-1.5">
         {commandRows.map((row) => (
           <li
-            className="flex items-baseline gap-2 rounded-md px-1 py-1 transition-colors hover:bg-white/[0.03]"
+            className="flex items-baseline gap-2 rounded px-1 py-1 transition-colors hover:bg-white/[0.03]"
             key={row.cmd}
           >
-            <code className="shrink-0 rounded bg-pink-500/12 px-2 py-0.5 font-mono font-semibold text-[12px] text-pink-200">
+            <code className="shrink-0 rounded bg-muted px-2 py-0.5 font-mono font-semibold text-[12px] text-foreground">
               {row.cmd.split(" ")[0]}
             </code>
             {row.cmd.includes("(") ? (
-              <code className="shrink-0 rounded bg-white/[0.04] px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
+              <code className="shrink-0 rounded bg-muted/60 px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
                 {row.cmd.split(" ")[1]?.replace(/[()]/g, "")}
               </code>
             ) : null}
-            <span className="font-medium text-[12.5px] text-muted-foreground leading-snug tracking-tight">
+            <span className="text-[12.5px] text-muted-foreground leading-snug">
               — {row.desc}
             </span>
           </li>
@@ -109,21 +108,21 @@ const pages: HelpPage[] = [
     icon: SparklesIcon,
     body: (
       <div className="flex flex-col gap-3">
-        <p className="font-medium text-[13px] text-muted-foreground leading-[170%] tracking-tight">
-          <code className="rounded bg-pink-500/12 px-1.5 py-0.5 font-mono text-[12px] text-pink-200">
+        <p className="text-[13px] text-muted-foreground leading-[1.65]">
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             s.call
           </code>{" "}
           waits in queue → matched with another server → you&apos;re connected.
         </p>
-        <p className="font-medium text-[13px] text-muted-foreground leading-[170%] tracking-tight">
+        <p className="text-[13px] text-muted-foreground leading-[1.65]">
           messages relay across via webhook with your name + avatar.
         </p>
-        <p className="font-medium text-[13px] text-muted-foreground leading-[170%] tracking-tight">
-          <code className="rounded bg-pink-500/12 px-1.5 py-0.5 font-mono text-[12px] text-pink-200">
+        <p className="text-[13px] text-muted-foreground leading-[1.65]">
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             s.skip
           </code>{" "}
           to swap.{" "}
-          <code className="rounded bg-pink-500/12 px-1.5 py-0.5 font-mono text-[12px] text-pink-200">
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             s.hangup
           </code>{" "}
           to end. silence auto-ends after 5 min.
@@ -139,12 +138,13 @@ const pages: HelpPage[] = [
       <ul className="flex flex-col gap-2">
         {tips.map((tip) => (
           <li
-            className="flex items-start gap-2.5 font-medium text-[13px] text-muted-foreground leading-[160%] tracking-tight"
+            className="flex items-start gap-2.5 text-[13px] text-muted-foreground leading-[1.6]"
             key={tip}
           >
-            <span aria-hidden className="mt-0.5 text-pink-300">
-              ✦
-            </span>
+            <span
+              aria-hidden
+              className="mt-1.5 size-1 shrink-0 rounded-full bg-pink-500"
+            />
             <span>{tip}</span>
           </li>
         ))}
@@ -159,7 +159,6 @@ export function HelpPeek() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const active = pages[activeIdx];
 
-  // close on outside click + Escape
   useEffect(() => {
     if (!open) {
       return;
@@ -184,38 +183,30 @@ export function HelpPeek() {
 
   return (
     <section
-      className="reveal-on-scroll cv-auto relative flex flex-col items-center gap-16 py-24 md:py-32"
+      className="cv-auto relative flex flex-col items-start gap-12 border-border/60 border-t py-20 md:py-28"
       id="help"
     >
       <SectionHeading
-        icon={Book02Icon}
-        subtitle="paginated, dropdown-driven, and lives entirely inside discord. try the dropdown."
+        eyebrow="Help"
+        subtitle="Paginated, dropdown-driven, lives entirely inside Discord. Try the dropdown."
         title={
           <>
-            a peek at <GradientText>s.help</GradientText>
+            A peek at <em className="font-medium italic">s.help</em>
           </>
         }
       />
 
-      <div className="relative w-full max-w-2xl">
-        <div
-          aria-hidden="true"
-          className="absolute -inset-12 -z-10"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, oklch(0.7 0.27 350 / 0.18) 0%, transparent 65%)",
-          }}
-        />
-
-        {/* fake Discord message */}
-        <div className="rounded-2xl border border-white/5 bg-[rgb(43_45_49)] p-5 shadow-2xl shadow-black/40">
-          {/* author line */}
+      <div className="relative w-full max-w-2xl self-center">
+        <div className="rounded-xl border border-border bg-card p-5">
           <div className="flex items-center gap-3 pb-3">
-            <span className="flex size-10 items-center justify-center rounded-full bg-pink-500 text-white">
-              <HugeiconsIcon
-                className="size-5"
-                icon={Call02Icon}
-                strokeWidth={2}
+            <span className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-pink-500/15 ring-1 ring-pink-500/30">
+              <Image
+                alt=""
+                aria-hidden="true"
+                className="size-10 object-cover"
+                height={80}
+                src="/bot.png"
+                width={80}
               />
             </span>
             <div className="flex flex-col">
@@ -231,49 +222,40 @@ export function HelpPeek() {
             </div>
           </div>
 
-          {/* embed */}
-          <div className="flex overflow-hidden rounded-md bg-[rgb(34_35_39)]">
-            <div className="w-1 shrink-0 bg-pink-500" />
+          <div className="flex overflow-hidden rounded-md border border-border bg-background">
+            <div className="w-0.5 shrink-0 bg-pink-500" />
             <div className="flex flex-1 flex-col gap-3 p-4">
               <div className="flex items-center gap-2">
-                <span className="text-pink-300">✦</span>
-                <span className="font-semibold text-[14px] text-foreground tracking-tight">
-                  snibcall
-                </span>
-                <span className="text-muted-foreground">·</span>
                 <HugeiconsIcon
-                  className="size-4 text-pink-200"
+                  className="size-4 text-pink-400"
                   icon={active.icon}
                   strokeWidth={1.8}
                 />
                 <span className="font-semibold text-[14px] text-foreground tracking-tight">
                   {active.label}
                 </span>
+                <span className="ml-auto font-mono text-[10.5px] text-muted-foreground/80">
+                  {activeIdx + 1} / {pages.length}
+                </span>
               </div>
 
-              {/* page content — keyed so it remounts on change and triggers fade */}
               <div className="animate-[fade-in_220ms_ease-out]" key={active.id}>
                 {active.body}
               </div>
-
-              <p className="pt-1 font-mono text-[10px] text-muted-foreground/80 tracking-tight">
-                page {activeIdx + 1} / {pages.length} · pick a section below ↓
-              </p>
             </div>
           </div>
 
-          {/* dropdown — interactive */}
           <div className="relative mt-2" ref={dropdownRef}>
             <button
               aria-expanded={open}
               aria-haspopup="listbox"
-              className="flex w-full items-center justify-between rounded-md border border-white/5 bg-[rgb(34_35_39)] px-3 py-2.5 font-medium text-[13px] text-foreground transition-colors hover:bg-[rgb(40_41_45)]"
+              className="flex w-full items-center justify-between rounded-md border border-border bg-background px-3 py-2.5 font-medium text-[13px] text-foreground transition-colors hover:bg-secondary"
               onClick={() => setOpen((v) => !v)}
               type="button"
             >
               <span className="flex items-center gap-2.5">
                 <HugeiconsIcon
-                  className="size-4 text-pink-300"
+                  className="size-4 text-muted-foreground"
                   icon={active.icon}
                   strokeWidth={1.8}
                 />
@@ -287,15 +269,15 @@ export function HelpPeek() {
             </button>
 
             {open ? (
-              <ul className="absolute right-0 left-0 z-20 mt-1.5 flex animate-[fade-in_140ms_ease-out] flex-col gap-0.5 rounded-md border border-white/5 bg-[rgb(43_45_49)] p-1.5 shadow-2xl shadow-black/60">
+              <ul className="absolute right-0 left-0 z-20 mt-1.5 flex animate-[fade-in_140ms_ease-out] flex-col gap-0.5 rounded-md border border-border bg-popover p-1.5 shadow-black/40 shadow-xl">
                 {pages.map((page, idx) => (
                   <li key={page.id}>
                     <button
                       aria-pressed={idx === activeIdx}
                       className={`flex w-full items-center gap-2.5 rounded px-2.5 py-2 text-left font-medium text-[13px] transition-colors ${
                         idx === activeIdx
-                          ? "bg-pink-500/15 text-pink-100"
-                          : "text-muted-foreground hover:bg-white/[0.04] hover:text-foreground"
+                          ? "bg-secondary text-foreground"
+                          : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground"
                       }`}
                       onClick={() => {
                         setActiveIdx(idx);
@@ -304,7 +286,7 @@ export function HelpPeek() {
                       type="button"
                     >
                       <HugeiconsIcon
-                        className={`size-4 ${idx === activeIdx ? "text-pink-300" : "text-muted-foreground"}`}
+                        className="size-4 text-muted-foreground"
                         icon={page.icon}
                         strokeWidth={1.8}
                       />
@@ -320,15 +302,14 @@ export function HelpPeek() {
           </div>
         </div>
 
-        {/* page dots underneath the embed */}
-        <div className="mt-6 flex items-center justify-center gap-2">
+        <div className="mt-6 flex items-center justify-center gap-1.5">
           {pages.map((page, idx) => (
             <button
               aria-label={`go to ${page.label}`}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
+              className={`h-1 rounded-full transition-all duration-300 ${
                 idx === activeIdx
-                  ? "w-8 bg-pink-400"
-                  : "w-1.5 bg-white/15 hover:bg-white/30"
+                  ? "w-6 bg-foreground"
+                  : "w-1 bg-border hover:bg-muted-foreground"
               }`}
               key={page.id}
               onClick={() => setActiveIdx(idx)}

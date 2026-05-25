@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import {
   INVITE_URL,
@@ -22,6 +22,15 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
+});
+
+// Fraunces — soft, characterful display serif that matches the mascot's
+// warm, slightly vintage personality while staying grown-up at large sizes.
+const fraunces = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+  axes: ["SOFT", "opsz"],
 });
 
 export const metadata: Metadata = {
@@ -133,7 +142,8 @@ export default function RootLayout({
       className={cn(
         "dark h-full antialiased",
         geistSans.variable,
-        geistMono.variable
+        geistMono.variable,
+        fraunces.variable
       )}
       lang="en"
     >
