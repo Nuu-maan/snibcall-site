@@ -5,8 +5,8 @@ import { ImageResponse } from "next/og";
 export const size = { width: 64, height: 64 };
 export const contentType = "image/png";
 
-// Mascot is 755x907 (portrait). Scale to ~72px wide so the head + body
-// fill the 64x64 favicon nicely once the bottom is clipped by overflow.
+// Mascot is 755x907 (portrait). Scale so the head + body fill the
+// 64x64 favicon nicely once the bottom is clipped by overflow.
 const IMG_WIDTH = 72;
 const IMG_HEIGHT = Math.round((72 * 907) / 755); // ≈ 86
 
@@ -22,7 +22,7 @@ export default async function Icon() {
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
-        background: "#E8499E",
+        background: "transparent",
         overflow: "hidden",
       }}
     >
