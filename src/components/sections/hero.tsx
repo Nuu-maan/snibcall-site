@@ -43,10 +43,10 @@ export function Hero() {
   return (
     <section className="relative flex flex-col gap-16 pt-20 pb-16 sm:gap-20 md:pt-28 md:pb-24">
       <div className="grid items-center gap-12 md:grid-cols-[1fr_1.2fr] md:gap-16">
-        <div className="relative order-first flex justify-center md:justify-start">
+        <div className="parallax-y-down relative order-first flex justify-center md:justify-start">
           <Image
             alt="snibcall mascot — a strawberry-hooded cat holding a pink phone"
-            className="h-auto w-48 select-none sm:w-56 md:w-[280px] lg:w-[300px]"
+            className="h-auto w-48 animate-mascot-float select-none [animation-delay:600ms] [transform-origin:50%_80%] sm:w-56 md:w-[280px] lg:w-[300px]"
             height={907}
             priority
             src="/bot.png"
@@ -55,18 +55,40 @@ export function Hero() {
         </div>
 
         <div className="flex flex-col items-start gap-6 text-left">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-2.5 py-1 font-medium text-[11.5px] text-muted-foreground tracking-tight">
-            <span className="size-1.5 rounded-full bg-pink-500" />
+          <span className="inline-flex animate-[fade-up_500ms_cubic-bezier(0.23,1,0.32,1)_both] items-center gap-2 rounded-full border border-border bg-card px-2.5 py-1 font-medium text-[11.5px] text-muted-foreground tracking-tight">
+            <span className="relative flex size-1.5">
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 animate-ping-ring rounded-full bg-pink-500"
+              />
+              <span className="relative size-1.5 rounded-full bg-pink-500" />
+            </span>
             v1 — Public beta
           </span>
 
           <h1 className="font-normal text-[48px] text-foreground leading-[1] tracking-[-0.03em] sm:text-[60px] md:text-[72px]">
-            A tiny phone
+            <span className="inline-block animate-[fade-up_700ms_cubic-bezier(0.23,1,0.32,1)_80ms_both]">
+              A
+            </span>{" "}
+            <span className="inline-block animate-[fade-up_700ms_cubic-bezier(0.23,1,0.32,1)_140ms_both]">
+              tiny
+            </span>{" "}
+            <span className="inline-block animate-[fade-up_700ms_cubic-bezier(0.23,1,0.32,1)_200ms_both]">
+              phone
+            </span>
             <br />
-            for your <em className="font-medium italic">server.</em>
+            <span className="inline-block animate-[fade-up_700ms_cubic-bezier(0.23,1,0.32,1)_260ms_both]">
+              for
+            </span>{" "}
+            <span className="inline-block animate-[fade-up_700ms_cubic-bezier(0.23,1,0.32,1)_320ms_both]">
+              your
+            </span>{" "}
+            <span className="inline-block animate-[fade-up_700ms_cubic-bezier(0.23,1,0.32,1)_380ms_both]">
+              <em className="font-medium italic">server.</em>
+            </span>
           </h1>
 
-          <p className="max-w-md text-[16px] text-muted-foreground leading-[1.6] sm:text-[17px]">
+          <p className="max-w-md animate-[fade-up_600ms_cubic-bezier(0.23,1,0.32,1)_140ms_both] text-[16px] text-muted-foreground leading-[1.6] sm:text-[17px]">
             Connect two Discord servers and chat across them. Two channels run{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[14px] text-foreground">
               s.call
@@ -75,25 +97,25 @@ export function Hero() {
             original sender&apos;s name and avatar.
           </p>
 
-          <div className="mt-2 flex w-full flex-col items-stretch gap-2.5 sm:w-auto sm:flex-row sm:items-center">
+          <div className="mt-2 flex w-full animate-[fade-up_600ms_cubic-bezier(0.23,1,0.32,1)_220ms_both] flex-col items-stretch gap-2.5 sm:w-auto sm:flex-row sm:items-center">
             <Link
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-pink-500 px-4 py-2.5 font-semibold text-[14px] text-white tracking-tight transition-colors hover:bg-pink-600"
+              className="group inline-flex items-center justify-center gap-2 rounded-md bg-pink-500 px-4 py-2.5 font-semibold text-[14px] text-white tracking-tight transition-[background-color,transform,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-pink-600 hover:shadow-[0_8px_28px_-6px_oklch(0.7_0.16_20_/_0.55)] active:scale-[0.97]"
               href="/invite"
             >
               <HugeiconsIcon
-                className="size-4"
+                className="size-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-[8deg]"
                 icon={Call02Icon}
                 strokeWidth={2.2}
               />
               Add to Discord
             </Link>
             <Link
-              className="inline-flex items-center justify-center gap-1.5 rounded-md border border-border bg-card px-4 py-2.5 font-semibold text-[14px] text-foreground tracking-tight transition-colors hover:bg-secondary"
+              className="group inline-flex items-center justify-center gap-1.5 rounded-md border border-border bg-card px-4 py-2.5 font-semibold text-[14px] text-foreground tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary active:scale-[0.97]"
               href="/commands"
             >
               Browse commands
               <HugeiconsIcon
-                className="size-3.5 opacity-70"
+                className="size-3.5 opacity-70 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 icon={ArrowUpRight01Icon}
                 strokeWidth={2.2}
               />
@@ -102,8 +124,8 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="w-full">
-        <div className="overflow-hidden rounded-xl border border-border bg-card">
+      <div className="reveal-on-scroll w-full">
+        <div className="parallax-y-up-sm overflow-hidden rounded-xl border border-border bg-card">
           <div className="flex items-center justify-between border-border/80 border-b px-4 py-3">
             <div className="flex items-center gap-2 font-semibold text-[13.5px] text-foreground tracking-tight">
               <HugeiconsIcon
@@ -114,15 +136,28 @@ export function Hero() {
               general
             </div>
             <div className="inline-flex items-center gap-2 font-medium font-mono text-[11px] text-muted-foreground tracking-tight">
-              <span className="size-1.5 rounded-full bg-pink-500" />
+              <span className="relative flex size-1.5">
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 animate-ping-ring rounded-full bg-pink-500"
+                />
+                <span className="relative size-1.5 animate-status-pulse rounded-full bg-pink-500" />
+              </span>
               paired with beta-cafe
             </div>
           </div>
 
           <ul className="flex flex-col divide-y divide-border/40">
-            {relayLog.map((msg) => (
+            {relayLog.map((msg, idx) => (
               <li
-                className="flex items-start gap-3 px-4 py-3 transition-colors hover:bg-secondary/40"
+                className={`flex items-start gap-3 px-4 py-3 transition-colors duration-200 hover:bg-secondary/40 ${
+                  [
+                    "reveal-on-scroll",
+                    "reveal-on-scroll-1",
+                    "reveal-on-scroll-2",
+                    "reveal-on-scroll-3",
+                  ][idx]
+                }`}
                 key={msg.author}
               >
                 <span
@@ -156,7 +191,7 @@ export function Hero() {
           </ul>
         </div>
 
-        <p className="mt-4 max-w-xl text-[13.5px] text-muted-foreground leading-[1.6]">
+        <p className="reveal-on-scroll-2 mt-4 max-w-xl text-[13.5px] text-muted-foreground leading-[1.6]">
           Messages in the paired channel relay through a webhook — carrying the
           original author&apos;s name and avatar to the other side.
         </p>

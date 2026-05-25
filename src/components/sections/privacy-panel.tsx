@@ -165,18 +165,18 @@ export function PrivacyPanel() {
     <>
       <section className="relative flex flex-col items-start gap-5 py-20 md:py-28">
         <Link
-          className="inline-flex items-center gap-1.5 font-medium text-[12px] text-muted-foreground tracking-tight transition-colors hover:text-foreground"
+          className="reveal-on-scroll group inline-flex items-center gap-1.5 font-medium text-[12px] text-muted-foreground tracking-tight transition-colors hover:text-foreground"
           href="/"
         >
           <HugeiconsIcon
-            className="size-3.5"
+            className="size-3.5 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-x-0.5"
             icon={ArrowLeft02Icon}
             strokeWidth={2}
           />
           Back to home
         </Link>
 
-        <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-medium text-[11.5px] text-muted-foreground tracking-tight">
+        <div className="reveal-on-scroll inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-medium text-[11.5px] text-muted-foreground tracking-tight">
           <HugeiconsIcon
             className="size-3.5 text-pink-500"
             icon={Shield01Icon}
@@ -186,18 +186,18 @@ export function PrivacyPanel() {
           <span className="font-mono tabular-nums">{LAST_UPDATED}</span>
         </div>
 
-        <h1 className="font-normal text-[48px] text-foreground leading-[1.05] tracking-[-0.03em] md:text-[64px]">
+        <h1 className="reveal-up-lg font-normal text-[48px] text-foreground leading-[1.05] tracking-[-0.03em] md:text-[64px]">
           Privacy
         </h1>
 
-        <p className="max-w-xl text-[15.5px] text-muted-foreground leading-[1.65] sm:text-[16px]">
+        <p className="reveal-on-scroll-1 max-w-xl text-[15.5px] text-muted-foreground leading-[1.65] sm:text-[16px]">
           The short version: snibcall never stores your messages, never tracks
           you, and never shares anything. The long version is below.
         </p>
       </section>
 
       <section className="border-border/60 border-t py-12">
-        <div className="rounded-xl border border-border bg-card p-6 md:p-8">
+        <div className="reveal-scale rounded-xl border border-border bg-card p-6 md:p-8">
           <div className="flex items-start gap-4">
             <span className="flex size-10 shrink-0 items-center justify-center rounded-md border border-border bg-background text-foreground">
               <HugeiconsIcon
@@ -232,7 +232,9 @@ export function PrivacyPanel() {
       <section className="flex flex-col gap-6 border-border/60 border-t py-12 pb-16">
         {sections.map((section, idx) => (
           <article
-            className="flex flex-col gap-4 rounded-xl border border-border bg-card p-6 md:p-8"
+            className={`flex flex-col gap-4 rounded-xl border border-border bg-card p-6 md:p-8 ${
+              idx % 2 === 0 ? "reveal-left" : "reveal-right"
+            }`}
             id={section.id}
             key={section.id}
           >
@@ -259,7 +261,7 @@ export function PrivacyPanel() {
       </section>
 
       <section className="border-border/60 border-t py-12 pb-20">
-        <div className="rounded-xl border border-border bg-card p-6 md:p-8">
+        <div className="reveal-scale rounded-xl border border-border bg-card p-6 md:p-8">
           <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
             <div className="flex items-start gap-4">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-md border border-border bg-background text-foreground">
@@ -280,14 +282,14 @@ export function PrivacyPanel() {
               </div>
             </div>
             <a
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border bg-background px-4 py-2 font-semibold text-[13.5px] text-foreground tracking-tight transition-colors hover:bg-secondary"
+              className="group inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border bg-background px-4 py-2 font-semibold text-[13.5px] text-foreground tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary active:scale-[0.97]"
               href={SUPPORT_URL}
               rel="noopener"
               target="_blank"
             >
               Join support server
               <HugeiconsIcon
-                className="size-3.5 opacity-70"
+                className="size-3.5 opacity-70 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 icon={ArrowUpRight01Icon}
                 strokeWidth={2.2}
               />
