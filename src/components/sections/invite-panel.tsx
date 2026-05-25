@@ -1,5 +1,4 @@
 import {
-  ArrowLeft02Icon,
   ArrowUpRight01Icon,
   Book02Icon,
   BubbleChatIcon,
@@ -11,7 +10,6 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
 import Image from "next/image";
-import Link from "next/link";
 
 const CLIENT_ID = "1508101748714377286";
 const PERMISSIONS = "537218072";
@@ -79,19 +77,7 @@ export function InvitePanel() {
   return (
     <>
       <section className="relative flex flex-col items-center gap-6 py-20 text-center md:py-28">
-        <Link
-          className="inline-flex items-center gap-1.5 font-medium text-[12px] text-muted-foreground tracking-tight transition-colors hover:text-foreground"
-          href="/"
-        >
-          <HugeiconsIcon
-            className="size-3.5"
-            icon={ArrowLeft02Icon}
-            strokeWidth={2}
-          />
-          Back to home
-        </Link>
-
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex animate-mascot-float items-center justify-center [transform-origin:50%_80%]">
           <Image
             alt="snibcall mascot"
             className="h-auto w-36 select-none sm:w-44"
@@ -102,22 +88,28 @@ export function InvitePanel() {
           />
         </div>
 
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-medium text-[11.5px] text-muted-foreground tracking-tight">
-          <span className="size-1.5 animate-status-pulse rounded-full bg-pink-500" />
+        <span className="reveal-on-scroll inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-medium text-[11.5px] text-muted-foreground tracking-tight">
+          <span className="relative flex size-1.5">
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 animate-ping-ring rounded-full bg-pink-500"
+            />
+            <span className="relative size-1.5 animate-status-pulse rounded-full bg-pink-500" />
+          </span>
           One click away
         </span>
 
-        <h1 className="max-w-2xl font-normal text-[44px] text-foreground leading-[1.05] tracking-[-0.03em] md:text-[60px]">
+        <h1 className="reveal-up-lg max-w-2xl font-normal text-[44px] text-foreground leading-[1.05] tracking-[-0.03em] md:text-[60px]">
           Add snibcall to <em className="font-medium italic">your server.</em>
         </h1>
 
-        <p className="max-w-lg text-[15.5px] text-muted-foreground leading-[1.65] sm:text-[16px]">
+        <p className="reveal-on-scroll-1 max-w-lg text-[15.5px] text-muted-foreground leading-[1.65] sm:text-[16px]">
           You&apos;ll be sent to Discord to pick a server and confirm the
           permissions below. Nothing happens until you say yes.
         </p>
 
         <a
-          className="mt-2 inline-flex items-center gap-2.5 rounded-md bg-pink-500 px-6 py-3 font-semibold text-[15px] text-white tracking-tight transition-colors hover:bg-pink-600"
+          className="reveal-scale mt-2 inline-flex items-center gap-2.5 rounded-md bg-pink-500 px-6 py-3 font-semibold text-[15px] text-white tracking-tight transition-[background-color,transform,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-pink-600 hover:shadow-[0_10px_32px_-8px_oklch(0.7_0.16_20_/_0.55)] active:scale-[0.97]"
           href={INVITE_URL}
           rel="noopener"
           target="_blank"
@@ -135,13 +127,13 @@ export function InvitePanel() {
           />
         </a>
 
-        <p className="font-mono text-[11px] text-muted-foreground/80 uppercase tracking-[0.16em]">
+        <p className="reveal-on-scroll-2 font-mono text-[11px] text-muted-foreground/80 uppercase tracking-[0.16em]">
           Opens Discord · No card · Revocable any time
         </p>
       </section>
 
       <section className="flex flex-col gap-8 border-border/60 border-t py-16">
-        <div className="flex items-end justify-between gap-6">
+        <div className="reveal-on-scroll flex items-end justify-between gap-6">
           <div className="flex flex-col gap-2">
             <span className="font-medium font-mono text-[11px] text-muted-foreground uppercase tracking-[0.18em]">
               Permissions
@@ -160,38 +152,41 @@ export function InvitePanel() {
         </div>
 
         <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2">
-          {permissions.map((perm) => (
-            <article
-              className="flex flex-col gap-3 bg-card p-5"
-              key={perm.name}
-            >
-              <div className="flex items-center gap-3">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-border bg-background text-foreground">
-                  <HugeiconsIcon
-                    className="size-4"
-                    icon={perm.icon}
-                    strokeWidth={1.8}
-                  />
-                </span>
-                <span className="font-semibold text-[14.5px] text-foreground tracking-tight">
-                  {perm.name}
-                </span>
-              </div>
-              <p className="text-[13.5px] text-muted-foreground leading-[1.65]">
-                {perm.why}
-              </p>
-            </article>
-          ))}
+          {permissions.map((perm, idx) => {
+            const reveal = idx % 2 === 0 ? "reveal-left" : "reveal-right";
+            return (
+              <article
+                className={`group flex flex-col gap-3 bg-card p-5 transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-card/70 ${reveal}`}
+                key={perm.name}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-border bg-background text-foreground transition-[transform,border-color,color] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5 group-hover:border-pink-500/40 group-hover:text-pink-400">
+                    <HugeiconsIcon
+                      className="size-4"
+                      icon={perm.icon}
+                      strokeWidth={1.8}
+                    />
+                  </span>
+                  <span className="font-semibold text-[14.5px] text-foreground tracking-tight">
+                    {perm.name}
+                  </span>
+                </div>
+                <p className="text-[13.5px] text-muted-foreground leading-[1.65]">
+                  {perm.why}
+                </p>
+              </article>
+            );
+          })}
         </div>
 
-        <p className="text-[13px] text-muted-foreground/80 leading-[1.65]">
+        <p className="reveal-on-scroll-2 text-[13px] text-muted-foreground/80 leading-[1.65]">
           Plus the usual basics: view channels and use external emojis. That
           really is the whole list.
         </p>
       </section>
 
       <section className="flex flex-col gap-8 border-border/60 border-t py-16">
-        <div className="flex flex-col gap-2">
+        <div className="reveal-on-scroll flex flex-col gap-2">
           <span className="font-medium font-mono text-[11px] text-muted-foreground uppercase tracking-[0.18em]">
             Next
           </span>
@@ -201,36 +196,39 @@ export function InvitePanel() {
         </div>
 
         <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3">
-          {steps.map((step) => (
-            <article
-              className="flex flex-col gap-3 bg-card p-6"
-              key={step.number}
-            >
-              <div className="flex items-center justify-between">
-                <span className="display-numeral text-[26px] text-pink-500 leading-none">
-                  {step.number}
-                </span>
-                <span className="flex size-9 items-center justify-center rounded-md border border-border bg-background text-foreground">
-                  <HugeiconsIcon
-                    className="size-4"
-                    icon={step.icon}
-                    strokeWidth={1.8}
-                  />
-                </span>
-              </div>
-              <h3 className="font-sans font-semibold text-[15px] text-foreground tracking-[-0.01em]">
-                {step.title}
-              </h3>
-              <p className="text-[13.5px] text-muted-foreground leading-[1.65]">
-                {step.body}
-              </p>
-            </article>
-          ))}
+          {steps.map((step, idx) => {
+            const reveal = ["reveal-left", "reveal-scale", "reveal-right"][idx];
+            return (
+              <article
+                className={`group flex flex-col gap-3 bg-card p-6 transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-card/70 ${reveal}`}
+                key={step.number}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="display-numeral text-[26px] text-pink-500 leading-none transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5">
+                    {step.number}
+                  </span>
+                  <span className="flex size-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-[transform,border-color,color] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-[-6deg] group-hover:border-pink-500/40 group-hover:text-pink-400">
+                    <HugeiconsIcon
+                      className="size-4"
+                      icon={step.icon}
+                      strokeWidth={1.8}
+                    />
+                  </span>
+                </div>
+                <h3 className="font-sans font-semibold text-[15px] text-foreground tracking-[-0.01em]">
+                  {step.title}
+                </h3>
+                <p className="text-[13.5px] text-muted-foreground leading-[1.65]">
+                  {step.body}
+                </p>
+              </article>
+            );
+          })}
         </div>
       </section>
 
       <section className="border-border/60 border-t py-16">
-        <div className="rounded-xl border border-border bg-card p-6 md:p-8">
+        <div className="reveal-scale rounded-xl border border-border bg-card p-6 md:p-8">
           <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
             <div className="flex items-start gap-4">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-md border border-border bg-background text-foreground">
@@ -251,14 +249,14 @@ export function InvitePanel() {
               </div>
             </div>
             <a
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border bg-background px-4 py-2 font-semibold text-[13.5px] text-foreground tracking-tight transition-colors hover:bg-secondary"
+              className="group inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border bg-background px-4 py-2 font-semibold text-[13.5px] text-foreground tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary active:scale-[0.97]"
               href={SUPPORT_URL}
               rel="noopener"
               target="_blank"
             >
               Join support server
               <HugeiconsIcon
-                className="size-3.5 opacity-70"
+                className="size-3.5 opacity-70 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 icon={ArrowUpRight01Icon}
                 strokeWidth={2.2}
               />
@@ -268,17 +266,17 @@ export function InvitePanel() {
       </section>
 
       <section className="flex flex-col items-center gap-4 border-border/60 border-t py-16 text-center">
-        <p className="text-[14px] text-muted-foreground tracking-tight">
+        <p className="reveal-on-scroll text-[14px] text-muted-foreground tracking-tight">
           Still here? The button works both ways.
         </p>
         <a
-          className="inline-flex items-center gap-2 rounded-md bg-pink-500 px-5 py-2.5 font-semibold text-[14px] text-white tracking-tight transition-colors hover:bg-pink-600"
+          className="group reveal-scale inline-flex items-center gap-2 rounded-md bg-pink-500 px-5 py-2.5 font-semibold text-[14px] text-white tracking-tight transition-[background-color,transform,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-pink-600 hover:shadow-[0_10px_32px_-8px_oklch(0.7_0.16_20_/_0.55)] active:scale-[0.97]"
           href={INVITE_URL}
           rel="noopener"
           target="_blank"
         >
           <HugeiconsIcon
-            className="size-4"
+            className="size-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-[8deg]"
             icon={Call02Icon}
             strokeWidth={2.2}
           />

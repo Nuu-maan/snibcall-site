@@ -74,6 +74,11 @@
   --color-discord-foreground: oklch(0.985 0 0);
   --color-success: oklch(0.74 0.16 145);
   --color-danger: oklch(0.65 0.21 25);
+
+  /* Motion — Emil-style strong curves. Stock CSS easings lack punch. */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 :root {
@@ -210,6 +215,7 @@
     *::after {
       animation-duration: 0.001ms !important;
       animation-iteration-count: 1 !important;
+      animation-timeline: auto !important;
       transition-duration: 0.001ms !important;
       scroll-behavior: auto !important;
     }
@@ -253,7 +259,7 @@
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -267,6 +273,78 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+/* Used for paginated content swaps — blur masks the swap so two
+   distinct states never sit on top of each other readably. */
+@keyframes fade-blur-in {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll-driven reveal variants. Larger travel distances + longer
+   animation-ranges than fade-up so motion reads as cinematic, not crisp. */
+@keyframes fade-up-lg {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-36px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fade-right {
+  from {
+    opacity: 0;
+    transform: translate3d(36px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fade-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -291,10 +369,178 @@
   }
 }
 
-@utility reveal-on-scroll {
-  animation: fade-up linear both;
-  animation-timeline: view();
-  animation-range: entry 0% cover 25%;
+/* Mascot drifts gently — barely perceptible, only on the hero. */
+@keyframes mascot-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+}
+
+/* Top-of-page progress bar — driven by scroll(root) timeline. */
+@keyframes scale-x-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Pink left bar in the help-peek embed — scales up from the top. */
+@keyframes scale-y-from-top {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Nav surface gets less translucent as the page is scrolled. */
+@keyframes nav-scrolled {
+  from {
+    background-color: oklch(0.135 0.006 30 / 0.5);
+    backdrop-filter: blur(6px);
+    border-bottom-color: oklch(1 0.005 30 / 0);
+  }
+  to {
+    background-color: oklch(0.135 0.006 30 / 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom-color: oklch(1 0.005 30 / 0.08);
+  }
+}
+
+/* Outward pulsing ring used behind small status dots. */
+@keyframes ping-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  80%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* Parallax — element drifts vertically as it scrolls through the
+   viewport. The total travel is doubled because the timeline covers
+   the full cover range (entry through exit). */
+@keyframes parallax-y-up {
+  from {
+    transform: translate3d(0, 56px, 0);
+  }
+  to {
+    transform: translate3d(0, -56px, 0);
+  }
+}
+
+@keyframes parallax-y-down {
+  from {
+    transform: translate3d(0, -56px, 0);
+  }
+  to {
+    transform: translate3d(0, 56px, 0);
+  }
+}
+
+@keyframes parallax-y-up-sm {
+  from {
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    transform: translate3d(0, -24px, 0);
+  }
+}
+
+/* Scroll-revealed elements stay hidden until the IntersectionObserver
+   on the client adds .is-visible. One-shot transitions, not scrubbed
+   timelines — that's the difference between "fade in" and "scrub." */
+.reveal-on-scroll,
+.reveal-on-scroll-1,
+.reveal-on-scroll-2,
+.reveal-on-scroll-3,
+.reveal-up-lg,
+.reveal-left,
+.reveal-right,
+.reveal-scale,
+.reveal-scale-y {
+  opacity: 0;
+  transition:
+    opacity 800ms var(--ease-out-strong),
+    transform 800ms var(--ease-out-strong);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll,
+.reveal-on-scroll-1,
+.reveal-on-scroll-2,
+.reveal-on-scroll-3 {
+  transform: translate3d(0, 32px, 0);
+}
+
+.reveal-on-scroll-1 {
+  transition-delay: 90ms;
+}
+.reveal-on-scroll-2 {
+  transition-delay: 180ms;
+}
+.reveal-on-scroll-3 {
+  transition-delay: 270ms;
+}
+
+.reveal-up-lg {
+  transform: translate3d(0, 56px, 0);
+}
+
+.reveal-left {
+  transform: translate3d(-48px, 0, 0);
+}
+
+.reveal-right {
+  transform: translate3d(48px, 0, 0);
+}
+
+.reveal-scale {
+  transform: scale(0.94);
+}
+
+.reveal-scale-y {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.reveal-on-scroll.is-visible,
+.reveal-on-scroll-1.is-visible,
+.reveal-on-scroll-2.is-visible,
+.reveal-on-scroll-3.is-visible,
+.reveal-up-lg.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-scale.is-visible,
+.reveal-scale-y.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll,
+  .reveal-on-scroll-1,
+  .reveal-on-scroll-2,
+  .reveal-on-scroll-3,
+  .reveal-up-lg,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .reveal-scale-y {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @utility animate-status-pulse {
@@ -303,4 +549,50 @@
 
 @utility animate-marquee {
   animation: marquee 50s linear infinite;
+}
+
+@utility animate-mascot-float {
+  animation: mascot-float 6s ease-in-out infinite;
+}
+
+@utility animate-ping-ring {
+  animation: ping-ring 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Page-wide scroll progress bar — driven by document scroll. */
+@utility scroll-progress {
+  transform-origin: left;
+  animation: scale-x-progress linear both;
+  animation-timeline: scroll(root);
+}
+
+/* Nav backdrop ramps in opacity over the first 120px of scroll. */
+@utility nav-scrolled {
+  animation: nav-scrolled linear both;
+  animation-timeline: scroll(root);
+  animation-range: 0 120px;
+}
+
+/* Parallax drift — scrubs continuously while the element is in view.
+   Pair with a non-revealed wrapper so the parallax transform doesn't
+   fight with reveal transitions on the same element. */
+@utility parallax-y-up {
+  animation: parallax-y-up linear both;
+  animation-timeline: view();
+  animation-range: cover 0% cover 100%;
+  will-change: transform;
+}
+
+@utility parallax-y-down {
+  animation: parallax-y-down linear both;
+  animation-timeline: view();
+  animation-range: cover 0% cover 100%;
+  will-change: transform;
+}
+
+@utility parallax-y-up-sm {
+  animation: parallax-y-up-sm linear both;
+  animation-timeline: view();
+  animation-range: cover 0% cover 100%;
+  will-change: transform;
 }

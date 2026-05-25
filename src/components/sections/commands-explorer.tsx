@@ -319,35 +319,41 @@ export function CommandsExplorer() {
     <>
       <section className="relative flex flex-col items-start gap-5 py-20 md:py-24">
         <Link
-          className="inline-flex items-center gap-1.5 font-medium text-[12px] text-muted-foreground tracking-tight transition-colors hover:text-foreground"
+          className="reveal-on-scroll group inline-flex items-center gap-1.5 font-medium text-[12px] text-muted-foreground tracking-tight transition-colors hover:text-foreground"
           href="/"
         >
           <HugeiconsIcon
-            className="size-3.5"
+            className="size-3.5 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-x-0.5"
             icon={ArrowLeft02Icon}
             strokeWidth={2}
           />
           Back to home
         </Link>
 
-        <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-medium text-[11.5px] text-muted-foreground tracking-tight">
-          <span className="size-1.5 animate-status-pulse rounded-full bg-pink-500" />
+        <div className="reveal-on-scroll inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-medium text-[11.5px] text-muted-foreground tracking-tight">
+          <span className="relative flex size-1.5">
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 animate-ping-ring rounded-full bg-pink-500"
+            />
+            <span className="relative size-1.5 animate-status-pulse rounded-full bg-pink-500" />
+          </span>
           <span className="tabular-nums">{commands.length}</span> commands · 4
           categories · prefix{" "}
           <code className="font-mono font-semibold text-foreground">s.</code>
         </div>
 
-        <h1 className="font-normal text-[48px] text-foreground leading-[1.05] tracking-[-0.03em] md:text-[64px]">
+        <h1 className="reveal-up-lg font-normal text-[48px] text-foreground leading-[1.05] tracking-[-0.03em] md:text-[64px]">
           Commands
         </h1>
 
-        <p className="max-w-xl text-[15.5px] text-muted-foreground leading-[1.65] sm:text-[16px]">
+        <p className="reveal-on-scroll-1 max-w-xl text-[15.5px] text-muted-foreground leading-[1.65] sm:text-[16px]">
           Every command snibcall knows, grouped by what it does. Click any usage
           snippet to copy it. Type to search by name, description, or
           permission.
         </p>
 
-        <div className="relative w-full max-w-md">
+        <div className="reveal-on-scroll-2 relative w-full max-w-md">
           <HugeiconsIcon
             className="absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground"
             icon={Search01Icon}
@@ -364,7 +370,7 @@ export function CommandsExplorer() {
           {query ? (
             <button
               aria-label="clear search"
-              className="absolute top-1/2 right-2 inline-flex size-7 -translate-y-1/2 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+              className="absolute top-1/2 right-2 inline-flex size-7 -translate-y-1/2 items-center justify-center rounded text-muted-foreground transition-[background-color,transform,color] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary hover:text-foreground active:scale-[0.93]"
               onClick={() => setQuery("")}
               type="button"
             >
@@ -377,7 +383,7 @@ export function CommandsExplorer() {
           ) : null}
         </div>
 
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="reveal-on-scroll-3 flex flex-wrap items-center gap-1.5">
           {filters.map((filter) => {
             const isActive = activeFilter === filter.id;
             const count =
@@ -386,7 +392,7 @@ export function CommandsExplorer() {
                 : commands.filter((c) => c.category === filter.id).length;
             return (
               <button
-                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 font-medium text-[12.5px] tracking-tight transition-colors ${
+                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 font-medium text-[12.5px] tracking-tight transition-[background-color,border-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] ${
                   isActive
                     ? "border-border bg-secondary text-foreground"
                     : "border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground"
@@ -407,7 +413,7 @@ export function CommandsExplorer() {
 
       <section className="flex flex-col gap-12 border-border/60 border-t pt-12 pb-24">
         {grouped.size === 0 ? (
-          <div className="flex flex-col items-center gap-3 rounded-xl border border-border border-dashed bg-card/40 px-8 py-20 text-center">
+          <div className="reveal-scale flex flex-col items-center gap-3 rounded-xl border border-border border-dashed bg-card/40 px-8 py-20 text-center">
             <HugeiconsIcon
               className="size-7 text-muted-foreground/70"
               icon={Search01Icon}
@@ -435,7 +441,7 @@ export function CommandsExplorer() {
             const meta = categoryMeta[category];
             return (
               <div className="flex flex-col gap-5" key={category}>
-                <div className="flex items-baseline gap-3">
+                <div className="reveal-on-scroll flex items-baseline gap-3">
                   <h2 className="font-sans font-semibold text-[18px] text-foreground tracking-[-0.01em]">
                     {meta.label}
                   </h2>
@@ -447,8 +453,13 @@ export function CommandsExplorer() {
                   </span>
                 </div>
                 <div className="grid gap-4 md:grid-cols-2">
-                  {cmds.map((cmd) => (
-                    <CommandCard command={cmd} key={cmd.name} />
+                  {cmds.map((cmd, idx) => (
+                    <div
+                      className={idx % 2 === 0 ? "reveal-left" : "reveal-right"}
+                      key={cmd.name}
+                    >
+                      <CommandCard command={cmd} />
+                    </div>
                   ))}
                 </div>
               </div>

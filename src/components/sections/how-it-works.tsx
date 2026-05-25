@@ -42,6 +42,7 @@ export function HowItWorks() {
       id="how"
     >
       <SectionHeading
+        className="reveal-on-scroll"
         eyebrow="How it works"
         subtitle="Three steps. No dashboards, no setup screens — it all happens in Discord."
         title={
@@ -53,31 +54,34 @@ export function HowItWorks() {
       />
 
       <div className="grid w-full gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3">
-        {steps.map((step) => (
-          <article
-            className="flex flex-col gap-4 bg-card p-6 md:p-7"
-            key={step.number}
-          >
-            <div className="flex items-center justify-between">
-              <span className="display-numeral text-[28px] text-pink-500 leading-none">
-                {step.number}
-              </span>
-              <span className="flex size-9 items-center justify-center rounded-md border border-border bg-background text-foreground">
-                <HugeiconsIcon
-                  className="size-4"
-                  icon={step.icon}
-                  strokeWidth={1.8}
-                />
-              </span>
-            </div>
-            <h3 className="font-sans font-semibold text-[16px] text-foreground tracking-[-0.01em]">
-              {step.title}
-            </h3>
-            <p className="text-[14px] text-muted-foreground leading-[1.65]">
-              {step.body}
-            </p>
-          </article>
-        ))}
+        {steps.map((step, idx) => {
+          const reveal = ["reveal-left", "reveal-scale", "reveal-right"][idx];
+          return (
+            <article
+              className={`group relative flex flex-col gap-4 bg-card p-6 transition-[background-color,transform,box-shadow] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:z-10 hover:-translate-y-0.5 hover:bg-card/70 hover:shadow-[0_12px_32px_-16px_oklch(0_0_0_/_0.7)] md:p-7 ${reveal}`}
+              key={step.number}
+            >
+              <div className="flex items-center justify-between">
+                <span className="display-numeral text-[28px] text-pink-500 leading-none transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5">
+                  {step.number}
+                </span>
+                <span className="flex size-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-[transform,border-color,color] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-[-6deg] group-hover:border-pink-500/40 group-hover:text-pink-400">
+                  <HugeiconsIcon
+                    className="size-4"
+                    icon={step.icon}
+                    strokeWidth={1.8}
+                  />
+                </span>
+              </div>
+              <h3 className="font-sans font-semibold text-[16px] text-foreground tracking-[-0.01em]">
+                {step.title}
+              </h3>
+              <p className="text-[14px] text-muted-foreground leading-[1.65]">
+                {step.body}
+              </p>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

@@ -33,7 +33,7 @@ export function Footer() {
   return (
     <footer className="relative mt-24 border-border/60 border-t bg-background">
       <div className="mx-auto grid w-full max-w-5xl gap-12 px-5 py-16 sm:px-6 md:grid-cols-[2fr_1fr_1fr] md:py-20">
-        <div className="flex flex-col gap-5">
+        <div className="reveal-left flex flex-col gap-5">
           <Link className="flex items-center gap-2.5" href="/">
             <span className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-pink-500/15 ring-1 ring-pink-500/30">
               <Image
@@ -56,7 +56,13 @@ export function Footer() {
           </p>
 
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-card px-3 py-1">
-            <span className="size-1.5 animate-status-pulse rounded-full bg-pink-500" />
+            <span className="relative flex size-1.5">
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 animate-ping-ring rounded-full bg-pink-500"
+              />
+              <span className="relative size-1.5 animate-status-pulse rounded-full bg-pink-500" />
+            </span>
             <span className="font-medium text-[11.5px] text-muted-foreground tracking-tight">
               Online — taking calls
             </span>
@@ -64,23 +70,23 @@ export function Footer() {
 
           <div className="mt-1 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
             <Link
-              className="group inline-flex items-center justify-center gap-1.5 rounded-full bg-pink-500 px-4 py-2 font-semibold text-[13px] text-white tracking-tight transition-colors hover:bg-pink-600"
+              className="group inline-flex items-center justify-center gap-1.5 rounded-full bg-pink-500 px-4 py-2 font-semibold text-[13px] text-white tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-pink-600 active:scale-[0.97]"
               href="/invite"
             >
               <HugeiconsIcon
-                className="size-3.5"
+                className="size-3.5 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-[8deg]"
                 icon={Call02Icon}
                 strokeWidth={2.2}
               />
               Invite bot
               <HugeiconsIcon
-                className="size-3.5 opacity-80 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="size-3.5 opacity-80 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 icon={ArrowUpRight01Icon}
                 strokeWidth={2.4}
               />
             </Link>
             <a
-              className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 font-semibold text-[13px] text-foreground tracking-tight transition-colors hover:bg-secondary"
+              className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 font-semibold text-[13px] text-foreground tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary active:scale-[0.97]"
               href={SUPPORT_URL}
               rel="noopener"
               target="_blank"
@@ -95,8 +101,13 @@ export function Footer() {
           </div>
         </div>
 
-        {linkColumns.map((column) => (
-          <nav className="flex flex-col gap-4" key={column.title}>
+        {linkColumns.map((column, idx) => (
+          <nav
+            className={`flex flex-col gap-4 ${
+              idx === 0 ? "reveal-on-scroll-1" : "reveal-right"
+            }`}
+            key={column.title}
+          >
             <h3 className="font-semibold text-[12px] text-foreground tracking-tight">
               {column.title}
             </h3>
@@ -119,7 +130,7 @@ export function Footer() {
       </div>
 
       <div className="border-border/60 border-t">
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-3 px-5 py-6 sm:px-6 md:flex-row">
+        <div className="reveal-on-scroll mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-3 px-5 py-6 sm:px-6 md:flex-row">
           <p className="text-[12.5px] text-muted-foreground tabular-nums tracking-tight">
             © 2026 snibcall. All rights reserved.
           </p>
