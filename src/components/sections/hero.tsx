@@ -1,5 +1,5 @@
 import {
-  ArrowRight02Icon,
+  ArrowUpRight01Icon,
   Call02Icon,
   HashtagIcon,
 } from "@hugeicons/core-free-icons";
@@ -94,7 +94,7 @@ export function Hero() {
               Browse commands
               <HugeiconsIcon
                 className="size-3.5 opacity-70"
-                icon={ArrowRight02Icon}
+                icon={ArrowUpRight01Icon}
                 strokeWidth={2.2}
               />
             </Link>

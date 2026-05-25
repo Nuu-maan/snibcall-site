@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  ArrowRight02Icon,
+  ArrowUpRight01Icon,
   Call02Icon,
   Cancel01Icon,
   Menu01Icon,
@@ -94,8 +94,8 @@ export function Nav() {
         >
           Add to Discord
           <HugeiconsIcon
-            className="size-3.5 opacity-80 transition-transform group-hover:translate-x-0.5"
-            icon={ArrowRight02Icon}
+            className="size-3.5 opacity-80 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            icon={ArrowUpRight01Icon}
             strokeWidth={2.4}
           />
         </Link>
@@ -118,23 +118,18 @@ export function Nav() {
 
       {open ? (
         <div
-          className="animate-[fade-in_160ms_ease-out] border-border/60 border-t md:hidden"
+          className="absolute inset-x-0 top-full animate-[fade-in_160ms_ease-out] border-border/60 border-t bg-background/95 backdrop-blur-md md:hidden"
           id="mobile-menu"
         >
           <ul className="flex flex-col gap-0.5 p-2">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
-                  className="flex items-center justify-between rounded-md px-3 py-3 font-medium text-[15px] text-foreground tracking-tight transition-colors hover:bg-secondary"
+                  className="flex items-center rounded-md px-3 py-3 font-medium text-[15px] text-foreground tracking-tight transition-colors hover:bg-secondary"
                   href={link.href}
                   onClick={closeMenu}
                 >
                   {link.label}
-                  <HugeiconsIcon
-                    className="size-3.5 text-muted-foreground"
-                    icon={ArrowRight02Icon}
-                    strokeWidth={2}
-                  />
                 </Link>
               </li>
             ))}

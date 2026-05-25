@@ -1,5 +1,5 @@
 import {
-  ArrowRight02Icon,
+  ArrowUpRight01Icon,
   Call02Icon,
   HelpCircleIcon,
 } from "@hugeicons/core-free-icons";
@@ -74,8 +74,8 @@ export function Footer() {
               />
               Invite bot
               <HugeiconsIcon
-                className="size-3.5 opacity-80 transition-transform group-hover:translate-x-0.5"
-                icon={ArrowRight02Icon}
+                className="size-3.5 opacity-80 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                icon={ArrowUpRight01Icon}
                 strokeWidth={2.4}
               />
             </Link>

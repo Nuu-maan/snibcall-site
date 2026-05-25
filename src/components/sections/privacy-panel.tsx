@@ -1,6 +1,6 @@
 import {
   ArrowLeft02Icon,
-  ArrowRight02Icon,
+  ArrowUpRight01Icon,
   Book02Icon,
   BubbleChatIcon,
   Cancel01Icon,
@@ -288,7 +288,7 @@ export function PrivacyPanel() {
               Join support server
               <HugeiconsIcon
                 className="size-3.5 opacity-70"
-                icon={ArrowRight02Icon}
+                icon={ArrowUpRight01Icon}
                 strokeWidth={2.2}
               />
             </a>

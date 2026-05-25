@@ -1,4 +1,4 @@
-import { ArrowRight02Icon, Call02Icon } from "@hugeicons/core-free-icons";
+import { ArrowUpRight01Icon, Call02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 
@@ -42,7 +42,7 @@ export function CTA() {
           Browse commands
           <HugeiconsIcon
             className="size-3.5 opacity-70"
-            icon={ArrowRight02Icon}
+            icon={ArrowUpRight01Icon}
             strokeWidth={2.2}
           />
         </Link>
