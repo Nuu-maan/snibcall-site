@@ -5,8 +5,8 @@ import { ImageResponse } from "next/og";
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-// Mascot fitted with a bit of pink padding around it so the strawberry
-// hood and pink phone read clearly on iOS home screens.
+// Mascot centered on the site's warm-paper background so iOS home screens
+// get an opaque tile (iOS adds black behind transparent icons).
 const IMG_WIDTH = 156;
 const IMG_HEIGHT = Math.round((156 * 907) / 755); // ≈ 187
 
@@ -22,7 +22,7 @@ export default async function AppleIcon() {
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
-        background: "#E8499E",
+        background: "#1B1815",
         borderRadius: 40,
         overflow: "hidden",
       }}

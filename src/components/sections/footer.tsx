@@ -1,10 +1,13 @@
-import { GithubIcon, HelpCircleIcon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
+import {
+  ArrowRight02Icon,
+  Call02Icon,
+  HelpCircleIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import Image from "next/image";
 import Link from "next/link";
 
 const SUPPORT_URL = "https://discord.gg/As8TbHwhhP";
-const GITHUB_URL = "https://github.com";
 
 interface FooterLink {
   external?: boolean;
@@ -21,27 +24,15 @@ const linkColumns: { links: FooterLink[]; title: string }[] = [
     ],
   },
   {
-    title: "Community",
-    links: [
-      { href: SUPPORT_URL, label: "Support server", external: true },
-      { href: GITHUB_URL, label: "GitHub", external: true },
-    ],
-  },
-  {
     title: "Legal",
     links: [{ href: "/privacy", label: "Privacy" }],
   },
 ];
 
-const socials: { href: string; icon: IconSvgElement; label: string }[] = [
-  { href: GITHUB_URL, icon: GithubIcon, label: "GitHub" },
-  { href: SUPPORT_URL, icon: HelpCircleIcon, label: "Support server" },
-];
-
 export function Footer() {
   return (
     <footer className="relative mt-24 border-border/60 border-t bg-background">
-      <div className="mx-auto grid w-full max-w-5xl gap-10 px-5 py-16 sm:gap-12 sm:px-6 md:grid-cols-[1.6fr_1fr_1fr_1fr] md:py-20">
+      <div className="mx-auto grid w-full max-w-5xl gap-12 px-5 py-16 sm:px-6 md:grid-cols-[2fr_1fr_1fr] md:py-20">
         <div className="flex flex-col gap-5">
           <Link className="flex items-center gap-2.5" href="/">
             <span className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-pink-500/15 ring-1 ring-pink-500/30">
@@ -71,23 +62,36 @@ export function Footer() {
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
-            {socials.map((social) => (
-              <Link
-                aria-label={social.label}
-                className="flex size-8 items-center justify-center rounded-md border border-border bg-card text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                href={social.href}
-                key={social.label}
-                rel="noopener"
-                target="_blank"
-              >
-                <HugeiconsIcon
-                  className="size-4"
-                  icon={social.icon}
-                  strokeWidth={1.8}
-                />
-              </Link>
-            ))}
+          <div className="mt-1 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
+            <Link
+              className="group inline-flex items-center justify-center gap-1.5 rounded-full bg-pink-500 px-4 py-2 font-semibold text-[13px] text-white tracking-tight transition-colors hover:bg-pink-600"
+              href="/invite"
+            >
+              <HugeiconsIcon
+                className="size-3.5"
+                icon={Call02Icon}
+                strokeWidth={2.2}
+              />
+              Invite bot
+              <HugeiconsIcon
+                className="size-3.5 opacity-80 transition-transform group-hover:translate-x-0.5"
+                icon={ArrowRight02Icon}
+                strokeWidth={2.4}
+              />
+            </Link>
+            <a
+              className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 font-semibold text-[13px] text-foreground tracking-tight transition-colors hover:bg-secondary"
+              href={SUPPORT_URL}
+              rel="noopener"
+              target="_blank"
+            >
+              <HugeiconsIcon
+                className="size-3.5 text-muted-foreground"
+                icon={HelpCircleIcon}
+                strokeWidth={2}
+              />
+              Join support server
+            </a>
           </div>
         </div>
 
