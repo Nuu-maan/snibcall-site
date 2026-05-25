@@ -41,7 +41,7 @@ const commands: Command[] = [
     category: "calling",
     icon: Call02Icon,
     description:
-      "start a call. queues this channel; pairs when another server runs s.call.",
+      "Start a call. Queues this channel; pairs when another server runs s.call.",
     usage: "s.call",
     cooldown: "5s",
     needs: ["manage webhooks", "send messages", "embed links", "read history"],
@@ -51,7 +51,7 @@ const commands: Command[] = [
     aliases: ["s.s"],
     category: "calling",
     icon: SkipForward,
-    description: "end the current call and immediately search for a new one.",
+    description: "End the current call and immediately search for a new one.",
     usage: "s.skip",
     cooldown: "5s",
     needs: [],
@@ -61,7 +61,7 @@ const commands: Command[] = [
     aliases: ["s.h", "s.leave", "s.end"],
     category: "calling",
     icon: PhoneOff01Icon,
-    description: "end the call quietly. if only queued, cancels the wait.",
+    description: "End the call quietly. If only queued, cancels the wait.",
     usage: "s.hangup",
     cooldown: "2s",
     needs: [],
@@ -72,7 +72,7 @@ const commands: Command[] = [
     category: "social",
     icon: FavouriteIcon,
     description:
-      "share your discord handle with the other side as a friend request.",
+      "Share your Discord handle with the other side as a friend request.",
     usage: "s.fr",
     cooldown: "10s",
     needs: ["must be in a call"],
@@ -83,7 +83,7 @@ const commands: Command[] = [
     category: "social",
     icon: IncognitoIcon,
     description:
-      "hide your name and avatar — turn anonymous. run again to reroll a new identity.",
+      "Hide your name and avatar — turn anonymous. Run again to reroll a new identity.",
     usage: "s.mask",
     cooldown: "5s",
     needs: [],
@@ -94,7 +94,7 @@ const commands: Command[] = [
     category: "social",
     icon: EyeIcon,
     description:
-      "remove your mask. your messages appear with your real name + avatar again.",
+      "Remove your mask. Your messages appear with your real name and avatar again.",
     usage: "s.unmask",
     cooldown: "3s",
     needs: [],
@@ -105,7 +105,7 @@ const commands: Command[] = [
     category: "moderation",
     icon: Shield01Icon,
     description:
-      "block another server from matching with yours. with no arg, blocks the current call partner.",
+      "Block another server from matching with yours. With no arg, blocks the current call partner.",
     usage: "s.block [serverId]",
     cooldown: "3s",
     needs: ["manage server"],
@@ -115,7 +115,7 @@ const commands: Command[] = [
     aliases: [],
     category: "moderation",
     icon: Cancel01Icon,
-    description: "remove a server from the block list.",
+    description: "Remove a server from the block list.",
     usage: "s.unblock <serverId>",
     cooldown: "3s",
     needs: ["manage server"],
@@ -125,7 +125,7 @@ const commands: Command[] = [
     aliases: ["s.blocklist"],
     category: "moderation",
     icon: CheckmarkBadge02Icon,
-    description: "list every server your server has blocked.",
+    description: "List every server your server has blocked.",
     usage: "s.blocks",
     cooldown: "3s",
     needs: ["manage server"],
@@ -135,7 +135,7 @@ const commands: Command[] = [
     aliases: ["s.commands"],
     category: "misc",
     icon: HelpCircleIcon,
-    description: "show the help menu, or a detailed page for one command.",
+    description: "Show the help menu, or a detailed page for one command.",
     usage: "s.help [command]",
     cooldown: "3s",
     needs: [],
@@ -146,50 +146,42 @@ const commands: Command[] = [
     category: "misc",
     icon: Activity03Icon,
     description:
-      "tiny health check — gateway latency and how long the bot has been up.",
+      "Tiny health check — gateway latency and how long the bot has been up.",
     usage: "s.ping",
     cooldown: "3s",
     needs: [],
   },
 ];
 
-const categoryMeta: Record<
-  Category,
-  { accent: string; description: string; label: string }
-> = {
+const categoryMeta: Record<Category, { description: string; label: string }> = {
   calling: {
-    label: "calling",
-    description: "start, skip, or end calls",
-    accent: "oklch(0.72 0.24 350)",
+    label: "Calling",
+    description: "Start, skip, or end calls",
   },
   social: {
-    label: "social",
-    description: "connect with the other side",
-    accent: "oklch(0.7 0.18 195)",
+    label: "Social",
+    description: "Connect with the other side",
   },
   moderation: {
-    label: "moderation",
-    description: "control who can match with your server",
-    accent: "oklch(0.7 0.18 35)",
+    label: "Moderation",
+    description: "Control who can match with your server",
   },
   misc: {
-    label: "misc",
-    description: "everything else",
-    accent: "oklch(0.7 0.18 295)",
+    label: "Misc",
+    description: "Everything else",
   },
 };
 
 const filters: { id: Category | "all"; label: string }[] = [
-  { id: "all", label: "all" },
-  { id: "calling", label: "calling" },
-  { id: "social", label: "social" },
-  { id: "moderation", label: "moderation" },
-  { id: "misc", label: "misc" },
+  { id: "all", label: "All" },
+  { id: "calling", label: "Calling" },
+  { id: "social", label: "Social" },
+  { id: "moderation", label: "Moderation" },
+  { id: "misc", label: "Misc" },
 ];
 
 function CommandCard({ command }: { command: Command }) {
   const [copied, setCopied] = useState(false);
-  const meta = categoryMeta[command.category];
 
   async function handleCopy() {
     await navigator.clipboard.writeText(command.usage);
@@ -198,40 +190,26 @@ function CommandCard({ command }: { command: Command }) {
   }
 
   return (
-    <article
-      className="group relative flex flex-col gap-4 overflow-hidden rounded-3xl border border-border bg-card-tinted p-6 ring-pink-soft transition-colors duration-300 hover:border-pink-500/30"
-      style={{ borderLeftWidth: "3px", borderLeftColor: `${meta.accent}` }}
-    >
-      <div
-        aria-hidden="true"
-        className="absolute -top-px right-12 left-12 h-px bg-gradient-to-r from-transparent via-pink-400/40 to-transparent opacity-60"
-      />
-
+    <article className="flex flex-col gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-border/100">
       <header className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
-          <span
-            className="flex size-11 shrink-0 items-center justify-center rounded-2xl ring-soft"
-            style={{
-              background: `linear-gradient(135deg, ${meta.accent}33 0%, ${meta.accent}11 100%)`,
-              color: meta.accent,
-            }}
-          >
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-md border border-border bg-background text-foreground">
             <HugeiconsIcon
-              className="size-5"
+              className="size-4.5"
               icon={command.icon}
               strokeWidth={1.8}
             />
           </span>
           <div className="flex flex-col">
-            <code className="font-mono font-semibold text-[18px] text-foreground tracking-tight">
+            <code className="font-mono font-semibold text-[17px] text-foreground tracking-tight">
               {command.name}
             </code>
             {command.aliases.length > 0 ? (
-              <span className="font-medium text-[11px] text-muted-foreground tracking-tight">
-                alias{command.aliases.length > 1 ? "es" : ""}{" "}
+              <span className="text-[11.5px] text-muted-foreground tracking-tight">
+                Alias{command.aliases.length > 1 ? "es" : ""}{" "}
                 {command.aliases.map((a, i) => (
                   <span key={a}>
-                    <code className="rounded bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-pink-200">
+                    <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10.5px] text-muted-foreground">
                       {a}
                     </code>
                     {i < command.aliases.length - 1 ? " · " : ""}
@@ -239,78 +217,63 @@ function CommandCard({ command }: { command: Command }) {
                 ))}
               </span>
             ) : (
-              <span className="font-medium text-[11px] text-muted-foreground/60 italic tracking-tight">
-                no aliases
+              <span className="text-[11.5px] text-muted-foreground/70 tracking-tight">
+                No aliases
               </span>
             )}
           </div>
         </div>
 
-        <span
-          className="rounded-full border px-2.5 py-0.5 font-mono font-semibold text-[10px] tracking-wider"
-          style={{
-            background: `${meta.accent}15`,
-            borderColor: `${meta.accent}40`,
-            color: meta.accent,
-          }}
-        >
+        <span className="rounded-md border border-border bg-background px-2 py-0.5 font-mono text-[10px] text-muted-foreground tracking-wider">
           {command.category}
         </span>
       </header>
 
-      <p className="font-medium text-[14px] text-muted-foreground leading-[170%] tracking-tight">
+      <p className="text-[13.5px] text-muted-foreground leading-[1.65]">
         {command.description}
       </p>
 
-      <div className="flex flex-col gap-2.5 border-white/5 border-t pt-4">
-        {/* usage row */}
+      <div className="flex flex-col gap-2 border-border/60 border-t pt-4">
         <div className="flex items-center justify-between gap-2">
-          <span className="font-mono font-semibold text-[10px] text-muted-foreground/60 uppercase tracking-[0.18em]">
-            usage
+          <span className="font-mono font-semibold text-[10px] text-muted-foreground/80 uppercase tracking-[0.18em]">
+            Usage
           </span>
           <button
             aria-label={copied ? "copied" : "copy usage"}
-            className="group/copy inline-flex items-center gap-2 rounded-md border border-white/5 bg-secondary/60 px-3 py-1.5 font-mono text-[12px] text-foreground transition-colors hover:border-pink-500/30 active:scale-[0.97]"
+            className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-2.5 py-1 font-mono text-[12px] text-foreground transition-colors hover:bg-secondary"
             onClick={handleCopy}
             type="button"
           >
-            <span className="text-pink-300">{">"}</span>
-            <span className="font-semibold text-pink-200">{command.usage}</span>
+            <span className="text-muted-foreground">$</span>
+            <span className="font-semibold">{command.usage}</span>
             <HugeiconsIcon
-              className={`size-3.5 transition-colors ${copied ? "text-pink-300" : "text-muted-foreground group-hover/copy:text-pink-300"}`}
+              className={`size-3.5 transition-colors ${copied ? "text-pink-500" : "text-muted-foreground"}`}
               icon={copied ? Tick02Icon : Copy01Icon}
               strokeWidth={2}
             />
           </button>
         </div>
 
-        {/* cooldown row */}
         <div className="flex items-center justify-between gap-2">
-          <span className="font-mono font-semibold text-[10px] text-muted-foreground/60 uppercase tracking-[0.18em]">
-            cooldown
+          <span className="font-mono font-semibold text-[10px] text-muted-foreground/80 uppercase tracking-[0.18em]">
+            Cooldown
           </span>
-          <span className="rounded-md border border-white/5 bg-secondary/60 px-2.5 py-1 font-mono font-semibold text-[12px] text-foreground tabular-nums">
+          <span className="rounded-md border border-border bg-background px-2 py-0.5 font-mono font-semibold text-[12px] text-foreground tabular-nums">
             {command.cooldown}
           </span>
         </div>
 
-        {/* needs row */}
         {command.needs.length > 0 ? (
-          <div className="flex flex-col gap-1.5">
-            <span className="font-mono font-semibold text-[10px] text-muted-foreground/60 uppercase tracking-[0.18em]">
-              needs
+          <div className="flex flex-col gap-1.5 pt-1">
+            <span className="font-mono font-semibold text-[10px] text-muted-foreground/80 uppercase tracking-[0.18em]">
+              Needs
             </span>
             <div className="flex flex-wrap gap-1.5">
               {command.needs.map((perm) => (
                 <span
-                  className="inline-flex items-center gap-1 rounded-full border border-pink-500/15 bg-pink-500/8 px-2 py-0.5 font-medium text-[11px] text-pink-200 lowercase tracking-tight"
+                  className="inline-flex items-center rounded-md border border-border bg-background px-2 py-0.5 text-[11px] text-muted-foreground tracking-tight"
                   key={perm}
                 >
-                  <HugeiconsIcon
-                    className="size-2.5"
-                    icon={CheckmarkBadge02Icon}
-                    strokeWidth={2.4}
-                  />
                   {perm}
                 </span>
               ))}
@@ -354,10 +317,9 @@ export function CommandsExplorer() {
 
   return (
     <>
-      {/* Header */}
-      <section className="relative flex flex-col items-center gap-7 py-20 text-center md:py-24">
+      <section className="relative flex flex-col items-start gap-5 py-20 md:py-24">
         <Link
-          className="inline-flex items-center gap-1.5 font-medium text-[12px] text-muted-foreground tracking-tight transition-colors hover:text-pink-200"
+          className="inline-flex items-center gap-1.5 font-medium text-[12px] text-muted-foreground tracking-tight transition-colors hover:text-foreground"
           href="/"
         >
           <HugeiconsIcon
@@ -365,45 +327,44 @@ export function CommandsExplorer() {
             icon={ArrowLeft02Icon}
             strokeWidth={2}
           />
-          back to home
+          Back to home
         </Link>
 
-        <div className="inline-flex items-center gap-2 rounded-full border border-pink-500/30 bg-pink-500/10 px-4 py-1.5 font-medium text-[12px] text-pink-200 tracking-tight ring-soft">
-          <span className="size-1.5 animate-status-pulse rounded-full bg-pink-400" />
+        <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-medium text-[11.5px] text-muted-foreground tracking-tight">
+          <span className="size-1.5 animate-status-pulse rounded-full bg-pink-500" />
           <span className="tabular-nums">{commands.length}</span> commands · 4
           categories · prefix{" "}
-          <code className="font-mono font-semibold">s.</code>
+          <code className="font-mono font-semibold text-foreground">s.</code>
         </div>
 
-        <h1 className="font-bold text-[44px] text-foreground lowercase leading-[105%] tracking-tight md:text-[64px]">
-          <span className="text-pink-300">✦</span> commands
+        <h1 className="font-normal text-[48px] text-foreground leading-[1.05] tracking-[-0.03em] md:text-[64px]">
+          Commands
         </h1>
 
-        <p className="max-w-xl text-pretty font-medium text-[16px] text-muted-foreground leading-[175%] tracking-tight">
-          every command snibcall knows, grouped by what it does. click any usage
-          snippet to copy it. type to search by name, description, or
+        <p className="max-w-xl text-[15.5px] text-muted-foreground leading-[1.65] sm:text-[16px]">
+          Every command snibcall knows, grouped by what it does. Click any usage
+          snippet to copy it. Type to search by name, description, or
           permission.
         </p>
 
-        {/* Search input */}
         <div className="relative w-full max-w-md">
           <HugeiconsIcon
-            className="absolute top-1/2 left-4 size-4 -translate-y-1/2 text-muted-foreground"
+            className="absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground"
             icon={Search01Icon}
             strokeWidth={2}
           />
           <input
             aria-label="search commands"
-            className="w-full rounded-full border border-border bg-card py-3 pr-10 pl-11 font-medium text-[14px] text-foreground ring-soft placeholder:text-muted-foreground/60 focus:border-pink-500/50 focus:outline-none focus:ring-2 focus:ring-pink-500/20"
+            className="w-full rounded-md border border-border bg-card py-2.5 pr-10 pl-10 font-medium text-[13.5px] text-foreground placeholder:text-muted-foreground/70 focus:border-pink-500/60 focus:outline-none focus:ring-2 focus:ring-pink-500/20"
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="search commands…"
+            placeholder="Search commands…"
             type="text"
             value={query}
           />
           {query ? (
             <button
               aria-label="clear search"
-              className="absolute top-1/2 right-3 inline-flex size-7 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-white/[0.06] hover:text-foreground"
+              className="absolute top-1/2 right-2 inline-flex size-7 -translate-y-1/2 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
               onClick={() => setQuery("")}
               type="button"
             >
@@ -416,28 +377,27 @@ export function CommandsExplorer() {
           ) : null}
         </div>
 
-        {/* Filter chips */}
-        <div className="flex flex-wrap items-center justify-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5">
           {filters.map((filter) => {
             const isActive = activeFilter === filter.id;
+            const count =
+              filter.id === "all"
+                ? commands.length
+                : commands.filter((c) => c.category === filter.id).length;
             return (
               <button
-                className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 font-medium text-[12px] lowercase tracking-tight transition-all duration-200 ${
+                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 font-medium text-[12.5px] tracking-tight transition-colors ${
                   isActive
-                    ? "border-pink-500/40 bg-pink-500/15 text-pink-100"
-                    : "border-border bg-card text-muted-foreground hover:border-pink-500/20 hover:text-pink-200"
+                    ? "border-border bg-secondary text-foreground"
+                    : "border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground"
                 }`}
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
                 type="button"
               >
                 {filter.label}
-                <span
-                  className={`tabular-nums ${isActive ? "text-pink-200/80" : "text-muted-foreground/60"}`}
-                >
-                  {filter.id === "all"
-                    ? commands.length
-                    : commands.filter((c) => c.category === filter.id).length}
+                <span className="text-muted-foreground/70 tabular-nums">
+                  {count}
                 </span>
               </button>
             );
@@ -445,30 +405,29 @@ export function CommandsExplorer() {
         </div>
       </section>
 
-      {/* Grouped command cards */}
-      <section className="flex flex-col gap-14 pb-24">
+      <section className="flex flex-col gap-12 border-border/60 border-t pt-12 pb-24">
         {grouped.size === 0 ? (
-          <div className="flex flex-col items-center gap-3 rounded-3xl border border-border border-dashed bg-card/40 px-8 py-20 text-center">
+          <div className="flex flex-col items-center gap-3 rounded-xl border border-border border-dashed bg-card/40 px-8 py-20 text-center">
             <HugeiconsIcon
-              className="size-8 text-muted-foreground/60"
+              className="size-7 text-muted-foreground/70"
               icon={Search01Icon}
               strokeWidth={1.5}
             />
-            <p className="font-medium text-[15px] text-foreground tracking-tight">
-              no commands match{" "}
-              <code className="rounded bg-pink-500/10 px-1.5 py-0.5 font-mono text-[13px] text-pink-200">
+            <p className="text-[14.5px] text-foreground tracking-tight">
+              No commands match{" "}
+              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[13px] text-foreground">
                 {query || activeFilter}
               </code>
             </p>
             <button
-              className="font-medium text-[13px] text-pink-300 underline-offset-4 hover:underline"
+              className="text-[13px] text-pink-500 underline-offset-4 hover:underline"
               onClick={() => {
                 setQuery("");
                 setActiveFilter("all");
               }}
               type="button"
             >
-              clear filters
+              Clear filters
             </button>
           </div>
         ) : (
@@ -476,30 +435,18 @@ export function CommandsExplorer() {
             const meta = categoryMeta[category];
             return (
               <div className="flex flex-col gap-5" key={category}>
-                <div className="flex items-center gap-3">
-                  <span
-                    aria-hidden="true"
-                    className="size-2 rounded-full"
-                    style={{ background: meta.accent }}
-                  />
-                  <h2 className="font-semibold text-[20px] text-foreground lowercase tracking-tight">
+                <div className="flex items-baseline gap-3">
+                  <h2 className="font-sans font-semibold text-[18px] text-foreground tracking-[-0.01em]">
                     {meta.label}
                   </h2>
-                  <span className="font-medium text-[13px] text-muted-foreground lowercase tracking-tight">
-                    — {meta.description}
+                  <span className="text-[13px] text-muted-foreground tracking-tight">
+                    {meta.description}
                   </span>
-                  <span
-                    aria-hidden="true"
-                    className="ml-auto h-px flex-1"
-                    style={{
-                      background: `linear-gradient(90deg, ${meta.accent}40 0%, transparent 100%)`,
-                    }}
-                  />
-                  <span className="font-mono font-semibold text-[11px] text-muted-foreground/70 tabular-nums tracking-wider">
+                  <span className="ml-auto font-mono font-semibold text-[11px] text-muted-foreground tabular-nums tracking-wider">
                     {cmds.length.toString().padStart(2, "0")}
                   </span>
                 </div>
-                <div className="grid gap-5 md:grid-cols-2">
+                <div className="grid gap-4 md:grid-cols-2">
                   {cmds.map((cmd) => (
                     <CommandCard command={cmd} key={cmd.name} />
                   ))}

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { Starfield } from "@/components/decor/starfield";
 import { Footer } from "@/components/sections/footer";
 import { InvitePanel } from "@/components/sections/invite-panel";
 import { Nav } from "@/components/sections/nav";
@@ -29,8 +28,7 @@ export const metadata: Metadata = {
 export default function InvitePage() {
   return (
     <>
-      <Starfield />
-      <main className="relative mx-auto w-full max-w-4xl px-6">
+      <main className="relative mx-auto w-full max-w-4xl px-5 sm:px-6">
         <Nav />
         <InvitePanel />
       </main>

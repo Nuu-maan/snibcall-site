@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { Starfield } from "@/components/decor/starfield";
 import { CommandsExplorer } from "@/components/sections/commands-explorer";
 import { Footer } from "@/components/sections/footer";
 import { Nav } from "@/components/sections/nav";
@@ -29,8 +28,7 @@ export const metadata: Metadata = {
 export default function CommandsPage() {
   return (
     <>
-      <Starfield />
-      <main className="relative mx-auto w-full max-w-5xl px-6">
+      <main className="relative mx-auto w-full max-w-5xl px-5 sm:px-6">
         <Nav />
         <CommandsExplorer />
       </main>
