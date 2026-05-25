@@ -1,6 +1,6 @@
 import {
   ArrowLeft02Icon,
-  ArrowRight02Icon,
+  ArrowUpRight01Icon,
   Book02Icon,
   BubbleChatIcon,
   Call02Icon,
@@ -69,7 +69,7 @@ const steps: Step[] = [
   },
   {
     number: "03",
-    icon: ArrowRight02Icon,
+    icon: ArrowUpRight01Icon,
     title: "Type s.call",
     body: "In any text channel — and you're queued for your first match.",
   },
@@ -130,7 +130,7 @@ export function InvitePanel() {
           Continue to Discord
           <HugeiconsIcon
             className="size-3.5 opacity-80"
-            icon={ArrowRight02Icon}
+            icon={ArrowUpRight01Icon}
             strokeWidth={2.2}
           />
         </a>
@@ -259,7 +259,7 @@ export function InvitePanel() {
               Join support server
               <HugeiconsIcon
                 className="size-3.5 opacity-70"
-                icon={ArrowRight02Icon}
+                icon={ArrowUpRight01Icon}
                 strokeWidth={2.2}
               />
             </a>
