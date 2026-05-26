@@ -21,5 +21,4 @@ export const SITE_KEYWORDS = [
 
 export const SUPPORT_URL = "https://discord.gg/As8TbHwhhP";
 export const INVITE_CLIENT_ID = "1508101748714377286";
-export const INVITE_PERMISSIONS = "537218072";
-export const INVITE_URL = `https://discord.com/oauth2/authorize?client_id=${INVITE_CLIENT_ID}&scope=bot&permissions=${INVITE_PERMISSIONS}`;
+export const INVITE_URL = `https://discord.com/oauth2/authorize?client_id=${INVITE_CLIENT_ID}`;
