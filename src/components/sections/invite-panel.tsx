@@ -12,8 +12,7 @@ import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
 import Image from "next/image";
 
 const CLIENT_ID = "1508101748714377286";
-const PERMISSIONS = "537218072";
-const INVITE_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&scope=bot&permissions=${PERMISSIONS}`;
+const INVITE_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}`;
 const SUPPORT_URL = "https://discord.gg/As8TbHwhhP";
 
 interface Permission {
