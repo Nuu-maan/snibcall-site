@@ -13,6 +13,8 @@ import {
 import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
 import Link from "next/link";
 
+import { buttonStyles } from "@/components/ui/button";
+
 const SUPPORT_URL = "https://discord.gg/As8TbHwhhP";
 const LAST_UPDATED = "2026-05-25";
 
@@ -229,12 +231,13 @@ export function PrivacyPanel() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-6 border-border/60 border-t py-12 pb-16">
+      <section
+        className="flex flex-col gap-6 border-border/60 border-t py-12 pb-16"
+        data-reveal-stagger="70"
+      >
         {sections.map((section, idx) => (
           <article
-            className={`flex flex-col gap-4 rounded-xl border border-border bg-card p-6 md:p-8 ${
-              idx % 2 === 0 ? "reveal-left" : "reveal-right"
-            }`}
+            className="reveal-on-scroll flex flex-col gap-4 rounded-xl border border-border bg-card p-6 md:p-8"
             id={section.id}
             key={section.id}
           >
@@ -282,14 +285,14 @@ export function PrivacyPanel() {
               </div>
             </div>
             <a
-              className="group inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border bg-background px-4 py-2 font-semibold text-[13.5px] text-foreground tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary active:scale-[0.97]"
+              className={buttonStyles({ variant: "secondary", size: "md" })}
               href={SUPPORT_URL}
               rel="noopener"
               target="_blank"
             >
               Join support server
               <HugeiconsIcon
-                className="size-3.5 opacity-70 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="size-3.5 opacity-70 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
                 icon={ArrowUpRight01Icon}
                 strokeWidth={2.2}
               />

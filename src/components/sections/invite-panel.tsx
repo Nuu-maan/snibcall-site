@@ -11,6 +11,8 @@ import {
 import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
 import Image from "next/image";
 
+import { buttonStyles } from "@/components/ui/button";
+
 const CLIENT_ID = "1508101748714377286";
 const INVITE_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}`;
 const SUPPORT_URL = "https://discord.gg/As8TbHwhhP";
@@ -108,19 +110,23 @@ export function InvitePanel() {
         </p>
 
         <a
-          className="reveal-scale mt-2 inline-flex items-center gap-2.5 rounded-md bg-pink-500 px-6 py-3 font-semibold text-[15px] text-white tracking-tight transition-[background-color,transform,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-pink-600 hover:shadow-[0_10px_32px_-8px_oklch(0.7_0.16_20_/_0.55)] active:scale-[0.97]"
+          className={buttonStyles({
+            variant: "primary",
+            size: "lg",
+            className: "reveal-scale mt-2",
+          })}
           href={INVITE_URL}
           rel="noopener"
           target="_blank"
         >
           <HugeiconsIcon
-            className="size-4"
+            className="size-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:rotate-[8deg]"
             icon={Call02Icon}
             strokeWidth={2.2}
           />
           Continue to Discord
           <HugeiconsIcon
-            className="size-3.5 opacity-80"
+            className="size-3.5 opacity-80 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
             icon={ArrowUpRight01Icon}
             strokeWidth={2.2}
           />
@@ -150,32 +156,32 @@ export function InvitePanel() {
           </span>
         </div>
 
-        <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2">
-          {permissions.map((perm, idx) => {
-            const reveal = idx % 2 === 0 ? "reveal-left" : "reveal-right";
-            return (
-              <article
-                className={`group flex flex-col gap-3 bg-card p-5 transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-card/70 ${reveal}`}
-                key={perm.name}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-border bg-background text-foreground transition-[transform,border-color,color] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5 group-hover:border-pink-500/40 group-hover:text-pink-400">
-                    <HugeiconsIcon
-                      className="size-4"
-                      icon={perm.icon}
-                      strokeWidth={1.8}
-                    />
-                  </span>
-                  <span className="font-semibold text-[14.5px] text-foreground tracking-tight">
-                    {perm.name}
-                  </span>
-                </div>
-                <p className="text-[13.5px] text-muted-foreground leading-[1.65]">
-                  {perm.why}
-                </p>
-              </article>
-            );
-          })}
+        <div
+          className="grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2"
+          data-reveal-stagger="60"
+        >
+          {permissions.map((perm) => (
+            <article
+              className="reveal-on-scroll group flex flex-col gap-3 bg-card p-5 transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-card/70"
+              key={perm.name}
+            >
+              <div className="flex items-center gap-3">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-border bg-background text-foreground transition-[transform,border-color,color] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5 group-hover:border-pink-500/40 group-hover:text-pink-400">
+                  <HugeiconsIcon
+                    className="size-4"
+                    icon={perm.icon}
+                    strokeWidth={1.8}
+                  />
+                </span>
+                <span className="font-semibold text-[14.5px] text-foreground tracking-tight">
+                  {perm.name}
+                </span>
+              </div>
+              <p className="text-[13.5px] text-muted-foreground leading-[1.65]">
+                {perm.why}
+              </p>
+            </article>
+          ))}
         </div>
 
         <p className="reveal-on-scroll-2 text-[13px] text-muted-foreground/80 leading-[1.65]">
@@ -194,35 +200,35 @@ export function InvitePanel() {
           </h2>
         </div>
 
-        <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3">
-          {steps.map((step, idx) => {
-            const reveal = ["reveal-left", "reveal-scale", "reveal-right"][idx];
-            return (
-              <article
-                className={`group flex flex-col gap-3 bg-card p-6 transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-card/70 ${reveal}`}
-                key={step.number}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="display-numeral text-[26px] text-pink-500 leading-none transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5">
-                    {step.number}
-                  </span>
-                  <span className="flex size-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-[transform,border-color,color] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-[-6deg] group-hover:border-pink-500/40 group-hover:text-pink-400">
-                    <HugeiconsIcon
-                      className="size-4"
-                      icon={step.icon}
-                      strokeWidth={1.8}
-                    />
-                  </span>
-                </div>
-                <h3 className="font-sans font-semibold text-[15px] text-foreground tracking-[-0.01em]">
-                  {step.title}
-                </h3>
-                <p className="text-[13.5px] text-muted-foreground leading-[1.65]">
-                  {step.body}
-                </p>
-              </article>
-            );
-          })}
+        <div
+          className="grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3"
+          data-reveal-stagger="80"
+        >
+          {steps.map((step) => (
+            <article
+              className="reveal-on-scroll group flex flex-col gap-3 bg-card p-6 transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-card/70"
+              key={step.number}
+            >
+              <div className="flex items-center justify-between">
+                <span className="display-numeral text-[26px] text-pink-500 leading-none transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5">
+                  {step.number}
+                </span>
+                <span className="flex size-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-[transform,border-color,color] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-[-6deg] group-hover:border-pink-500/40 group-hover:text-pink-400">
+                  <HugeiconsIcon
+                    className="size-4"
+                    icon={step.icon}
+                    strokeWidth={1.8}
+                  />
+                </span>
+              </div>
+              <h3 className="font-sans font-semibold text-[15px] text-foreground tracking-[-0.01em]">
+                {step.title}
+              </h3>
+              <p className="text-[13.5px] text-muted-foreground leading-[1.65]">
+                {step.body}
+              </p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -248,14 +254,14 @@ export function InvitePanel() {
               </div>
             </div>
             <a
-              className="group inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border bg-background px-4 py-2 font-semibold text-[13.5px] text-foreground tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary active:scale-[0.97]"
+              className={buttonStyles({ variant: "secondary", size: "md" })}
               href={SUPPORT_URL}
               rel="noopener"
               target="_blank"
             >
               Join support server
               <HugeiconsIcon
-                className="size-3.5 opacity-70 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="size-3.5 opacity-70 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
                 icon={ArrowUpRight01Icon}
                 strokeWidth={2.2}
               />
@@ -269,13 +275,17 @@ export function InvitePanel() {
           Still here? The button works both ways.
         </p>
         <a
-          className="group reveal-scale inline-flex items-center gap-2 rounded-md bg-pink-500 px-5 py-2.5 font-semibold text-[14px] text-white tracking-tight transition-[background-color,transform,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-pink-600 hover:shadow-[0_10px_32px_-8px_oklch(0.7_0.16_20_/_0.55)] active:scale-[0.97]"
+          className={buttonStyles({
+            variant: "primary",
+            size: "md",
+            className: "reveal-scale",
+          })}
           href={INVITE_URL}
           rel="noopener"
           target="_blank"
         >
           <HugeiconsIcon
-            className="size-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-[8deg]"
+            className="size-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:rotate-[8deg]"
             icon={Call02Icon}
             strokeWidth={2.2}
           />

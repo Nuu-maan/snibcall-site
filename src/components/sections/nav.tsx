@@ -9,22 +9,49 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+
+import { Button, buttonStyles } from "@/components/ui/button";
 
 interface NavLink {
   href: string;
   label: string;
+  /** For routed links — the pathname this link owns. */
+  match?: string;
+  /** For hash links on the home page — the section id to scroll-spy on. */
+  section?: string;
 }
 
 const navLinks: NavLink[] = [
-  { href: "/#features", label: "Features" },
-  { href: "/#how", label: "How it works" },
-  { href: "/commands", label: "Commands" },
-  { href: "/#help", label: "Help" },
+  { href: "/#features", label: "Features", section: "features" },
+  { href: "/#how", label: "How it works", section: "how" },
+  { href: "/commands", label: "Commands", match: "/commands" },
+  { href: "/#help", label: "Help", section: "help" },
 ];
 
+const HOME_SECTION_IDS = ["features", "how", "help"];
+
+function isActive(
+  pathname: string,
+  link: NavLink,
+  activeSection: string | null
+): boolean {
+  if (link.section) {
+    // Hash links only get highlighted when the user is on the home page
+    // AND the matching section is the one currently in view.
+    return pathname === "/" && activeSection === link.section;
+  }
+  if (!link.match) {
+    return false;
+  }
+  return pathname === link.match || pathname.startsWith(`${link.match}/`);
+}
+
 export function Nav() {
+  const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     if (!open) {
@@ -44,16 +71,67 @@ export function Nav() {
     };
   }, [open]);
 
+  // Close the mobile sheet on route change so the menu doesn't linger
+  // over the new page after a link click.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: intentional — close on every navigation.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Scroll-spy for home-page anchor links. We track which of the named
+  // sections is currently "the one being read" — defined as the section
+  // crossing the band between 30% and 50% from the top of the viewport.
+  // That keeps the highlight from flipping every time a tall section's
+  // edge brushes the very top or bottom of the screen.
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection(null);
+      return;
+    }
+    const targets = HOME_SECTION_IDS.map((id) =>
+      document.getElementById(id)
+    ).filter((el): el is HTMLElement => el !== null);
+    if (targets.length === 0) {
+      return;
+    }
+    const ratios = new Map<string, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            ratios.set(entry.target.id, entry.intersectionRatio);
+          } else {
+            ratios.delete(entry.target.id);
+          }
+        }
+        let topId: string | null = null;
+        let topRatio = 0;
+        for (const [id, ratio] of ratios) {
+          if (ratio > topRatio) {
+            topId = id;
+            topRatio = ratio;
+          }
+        }
+        setActiveSection(topId);
+      },
+      {
+        rootMargin: "-30% 0px -50% 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      }
+    );
+    for (const t of targets) {
+      observer.observe(t);
+    }
+    return () => observer.disconnect();
+  }, [pathname]);
+
   function closeMenu() {
     setOpen(false);
   }
 
   return (
-    <header className="nav-scrolled sticky top-0 z-[100] mx-auto flex w-full max-w-5xl flex-col border-border/60 border-b bg-background/85 backdrop-blur-md">
-      <nav
-        aria-label="primary"
-        className="flex w-full items-center justify-between gap-6 py-3"
-      >
+    <header className="nav-scrolled sticky top-0 z-[100] w-full border-border/60 border-b bg-background/85 backdrop-blur-md">
+      <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-6 px-5 py-3 sm:px-6">
         <Link
           aria-label="snibcall home"
           className="group inline-flex shrink-0 items-center gap-2.5 transition-transform duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]"
@@ -75,67 +153,102 @@ export function Nav() {
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                className="relative inline-flex items-center rounded-md px-3 py-1.5 font-medium text-[13.5px] text-muted-foreground tracking-tight transition-colors duration-200 after:absolute after:right-3 after:bottom-[5px] after:left-3 after:h-px after:origin-left after:scale-x-0 after:bg-pink-500/70 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.23,1,0.32,1)] after:content-[''] hover:text-foreground hover:after:scale-x-100"
-                href={link.href}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <nav aria-label="primary" className="hidden md:block">
+          <ul className="flex items-center gap-0.5 rounded-full border border-border/70 bg-card/60 p-1 backdrop-blur-sm">
+            {navLinks.map((link) => {
+              const active = isActive(pathname, link, activeSection);
+              return (
+                <li key={link.href}>
+                  <Link
+                    aria-current={active ? "page" : undefined}
+                    className={`relative inline-flex items-center rounded-full px-3 py-1.5 font-medium text-[13px] tracking-tight transition-colors duration-200 ${
+                      active
+                        ? "bg-background text-foreground shadow-[inset_0_0_0_1px_oklch(1_0_0_/_0.06)]"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                    href={link.href}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
-        <Link
-          className="group hidden shrink-0 items-center gap-1.5 rounded-full bg-pink-500 px-4 py-1.5 font-semibold text-[13px] text-white tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-pink-600 active:scale-[0.97] md:inline-flex"
-          href="/invite"
-        >
-          Add to Discord
-          <HugeiconsIcon
-            className="size-3.5 opacity-80 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            icon={ArrowUpRight01Icon}
-            strokeWidth={2.4}
-          />
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            className={buttonStyles({
+              variant: "primary",
+              size: "sm",
+              className: "hidden md:inline-flex",
+            })}
+            href="/invite"
+          >
+            Add to Discord
+            <HugeiconsIcon
+              className="size-3.5 opacity-80 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+              icon={ArrowUpRight01Icon}
+              strokeWidth={2.4}
+            />
+          </Link>
 
-        <button
-          aria-controls="mobile-menu"
-          aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
-          className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-border bg-card text-foreground transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary active:scale-[0.93] md:hidden"
-          onClick={() => setOpen((v) => !v)}
-          type="button"
-        >
-          <HugeiconsIcon
-            className="size-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
-            icon={open ? Cancel01Icon : Menu01Icon}
-            strokeWidth={2}
-          />
-        </button>
-      </nav>
+          <Button
+            aria-controls="mobile-menu"
+            aria-expanded={open}
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="md:hidden"
+            onClick={() => setOpen((v) => !v)}
+            size="icon"
+            variant="icon"
+          >
+            <HugeiconsIcon
+              className="size-4"
+              icon={open ? Cancel01Icon : Menu01Icon}
+              strokeWidth={2}
+            />
+          </Button>
+        </div>
+      </div>
 
       {open ? (
         <div
           className="absolute inset-x-0 top-full animate-[slide-down_220ms_cubic-bezier(0.32,0.72,0,1)] border-border/60 border-t bg-background/95 backdrop-blur-md md:hidden"
           id="mobile-menu"
         >
-          <ul className="flex flex-col gap-0.5 p-2">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  className="flex items-center rounded-md px-3 py-3 font-medium text-[15px] text-foreground tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary active:scale-[0.98]"
-                  href={link.href}
-                  onClick={closeMenu}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+          <ul className="mx-auto flex w-full max-w-5xl flex-col gap-0.5 px-3 py-3 sm:px-4">
+            {navLinks.map((link) => {
+              const active = isActive(pathname, link, activeSection);
+              return (
+                <li key={link.href}>
+                  <Link
+                    aria-current={active ? "page" : undefined}
+                    className={`flex items-center justify-between rounded-md px-3 py-3 font-medium text-[15px] tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.98] ${
+                      active
+                        ? "bg-secondary text-foreground"
+                        : "text-foreground/90 hover:bg-secondary hover:text-foreground"
+                    }`}
+                    href={link.href}
+                    onClick={closeMenu}
+                  >
+                    {link.label}
+                    {active ? (
+                      <span
+                        aria-hidden="true"
+                        className="size-1.5 rounded-full bg-pink-500"
+                      />
+                    ) : null}
+                  </Link>
+                </li>
+              );
+            })}
             <li className="px-1 pt-2 pb-1">
               <Link
-                className="flex w-full items-center justify-center gap-1.5 rounded-full bg-pink-500 px-4 py-2.5 font-semibold text-[14px] text-white tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-pink-600 active:scale-[0.97]"
+                className={buttonStyles({
+                  variant: "primary",
+                  size: "md",
+                  className: "w-full",
+                })}
                 href="/invite"
                 onClick={closeMenu}
               >

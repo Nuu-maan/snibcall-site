@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 
-import { Footer } from "@/components/sections/footer";
 import { InvitePanel } from "@/components/sections/invite-panel";
-import { Nav } from "@/components/sections/nav";
 
 const TITLE = "invite";
 const DESCRIPTION =
@@ -26,13 +24,5 @@ export const metadata: Metadata = {
 };
 
 export default function InvitePage() {
-  return (
-    <>
-      <main className="relative mx-auto w-full max-w-4xl px-5 sm:px-6">
-        <Nav />
-        <InvitePanel />
-      </main>
-      <Footer />
-    </>
-  );
+  return <InvitePanel />;
 }

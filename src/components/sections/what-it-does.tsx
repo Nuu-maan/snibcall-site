@@ -71,32 +71,30 @@ export function WhatItDoes() {
         }
       />
 
-      <div className="grid w-full gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-        {features.map((feature, idx) => {
-          const reveal = ["reveal-left", "reveal-on-scroll", "reveal-right"][
-            idx % 3
-          ];
-          return (
-            <article
-              className={`group flex flex-col items-start gap-3 transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-0.5 ${reveal}`}
-              key={feature.title}
-            >
-              <span className="flex size-10 items-center justify-center rounded-md border border-border bg-card text-foreground transition-[transform,border-color,color] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5 group-hover:border-pink-500/40 group-hover:text-pink-400">
-                <HugeiconsIcon
-                  className="size-4.5"
-                  icon={feature.icon}
-                  strokeWidth={1.8}
-                />
-              </span>
-              <h3 className="font-sans font-semibold text-[15px] text-foreground tracking-[-0.01em]">
-                {feature.title}
-              </h3>
-              <p className="text-[14px] text-muted-foreground leading-[1.65]">
-                {feature.description}
-              </p>
-            </article>
-          );
-        })}
+      <div
+        className="grid w-full gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3"
+        data-reveal-stagger="70"
+      >
+        {features.map((feature) => (
+          <article
+            className="reveal-on-scroll group flex flex-col items-start gap-3 transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-0.5"
+            key={feature.title}
+          >
+            <span className="flex size-10 items-center justify-center rounded-md border border-border bg-card text-foreground transition-[transform,border-color,color] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5 group-hover:border-pink-500/40 group-hover:text-pink-400">
+              <HugeiconsIcon
+                className="size-4.5"
+                icon={feature.icon}
+                strokeWidth={1.8}
+              />
+            </span>
+            <h3 className="font-sans font-semibold text-[15px] text-foreground tracking-[-0.01em]">
+              {feature.title}
+            </h3>
+            <p className="text-[14px] text-muted-foreground leading-[1.65]">
+              {feature.description}
+            </p>
+          </article>
+        ))}
       </div>
     </section>
   );
