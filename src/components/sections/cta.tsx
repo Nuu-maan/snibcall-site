@@ -2,6 +2,8 @@ import { ArrowUpRight01Icon, Call02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 
+import { buttonStyles } from "@/components/ui/button";
+
 export function CTA() {
   return (
     <section className="cv-auto relative flex flex-col items-center gap-6 border-border/60 border-t py-24 text-center md:py-32">
@@ -31,23 +33,23 @@ export function CTA() {
 
       <div className="reveal-scale mt-2 flex w-full flex-col items-stretch justify-center gap-2.5 sm:w-auto sm:flex-row sm:items-center">
         <Link
-          className="group inline-flex items-center justify-center gap-2 rounded-md bg-pink-500 px-5 py-3 font-semibold text-[14.5px] text-white tracking-tight transition-[background-color,transform,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-pink-600 hover:shadow-[0_10px_32px_-8px_oklch(0.7_0.16_20_/_0.55)] active:scale-[0.97]"
+          className={buttonStyles({ variant: "primary", size: "lg" })}
           href="/invite"
         >
           <HugeiconsIcon
-            className="size-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-[8deg]"
+            className="size-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:rotate-[8deg]"
             icon={Call02Icon}
             strokeWidth={2.2}
           />
           Add to Discord
         </Link>
         <Link
-          className="group inline-flex items-center justify-center gap-1.5 rounded-md border border-border bg-card px-5 py-3 font-semibold text-[14.5px] text-foreground tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary active:scale-[0.97]"
+          className={buttonStyles({ variant: "secondary", size: "lg" })}
           href="/commands"
         >
           Browse commands
           <HugeiconsIcon
-            className="size-3.5 opacity-70 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            className="size-3.5 opacity-70 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
             icon={ArrowUpRight01Icon}
             strokeWidth={2.2}
           />

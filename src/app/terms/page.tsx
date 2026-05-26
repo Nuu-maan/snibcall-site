@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 
-import { Footer } from "@/components/sections/footer";
-import { Nav } from "@/components/sections/nav";
 import { TermsPanel } from "@/components/sections/terms-panel";
 
 const TITLE = "terms";
@@ -26,13 +24,5 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
-  return (
-    <>
-      <main className="relative mx-auto w-full max-w-4xl px-5 sm:px-6">
-        <Nav />
-        <TermsPanel />
-      </main>
-      <Footer />
-    </>
-  );
+  return <TermsPanel />;
 }

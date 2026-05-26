@@ -452,12 +452,12 @@ export function CommandsExplorer() {
                     {cmds.length.toString().padStart(2, "0")}
                   </span>
                 </div>
-                <div className="grid gap-4 md:grid-cols-2">
-                  {cmds.map((cmd, idx) => (
-                    <div
-                      className={idx % 2 === 0 ? "reveal-left" : "reveal-right"}
-                      key={cmd.name}
-                    >
+                <div
+                  className="grid gap-4 md:grid-cols-2"
+                  data-reveal-stagger="60"
+                >
+                  {cmds.map((cmd) => (
+                    <div className="reveal-on-scroll" key={cmd.name}>
                       <CommandCard command={cmd} />
                     </div>
                   ))}

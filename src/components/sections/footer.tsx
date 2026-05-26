@@ -7,6 +7,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { buttonStyles } from "@/components/ui/button";
+
 const SUPPORT_URL = "https://discord.gg/As8TbHwhhP";
 
 interface FooterLink {
@@ -36,7 +38,7 @@ export function Footer() {
   return (
     <footer className="relative mt-24 border-border/60 border-t bg-background">
       <div className="mx-auto grid w-full max-w-5xl gap-12 px-5 py-16 sm:px-6 md:grid-cols-[2fr_1fr_1fr] md:py-20">
-        <div className="reveal-left flex flex-col gap-5">
+        <div className="reveal-on-scroll flex flex-col gap-5">
           <Link className="flex items-center gap-2.5" href="/">
             <span className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-pink-500/15 ring-1 ring-pink-500/30">
               <Image
@@ -73,23 +75,23 @@ export function Footer() {
 
           <div className="mt-1 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
             <Link
-              className="group inline-flex items-center justify-center gap-1.5 rounded-full bg-pink-500 px-4 py-2 font-semibold text-[13px] text-white tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-pink-600 active:scale-[0.97]"
+              className={buttonStyles({ variant: "primary", size: "sm" })}
               href="/invite"
             >
               <HugeiconsIcon
-                className="size-3.5 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-[8deg]"
+                className="size-3.5 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:rotate-[8deg]"
                 icon={Call02Icon}
                 strokeWidth={2.2}
               />
               Invite bot
               <HugeiconsIcon
-                className="size-3.5 opacity-80 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="size-3.5 opacity-80 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
                 icon={ArrowUpRight01Icon}
                 strokeWidth={2.4}
               />
             </Link>
             <a
-              className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 font-semibold text-[13px] text-foreground tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary active:scale-[0.97]"
+              className={buttonStyles({ variant: "secondary", size: "sm" })}
               href={SUPPORT_URL}
               rel="noopener"
               target="_blank"
@@ -107,7 +109,7 @@ export function Footer() {
         {linkColumns.map((column, idx) => (
           <nav
             className={`flex flex-col gap-4 ${
-              idx === 0 ? "reveal-on-scroll-1" : "reveal-right"
+              idx === 0 ? "reveal-on-scroll-1" : "reveal-on-scroll-2"
             }`}
             key={column.title}
           >

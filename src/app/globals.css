@@ -79,6 +79,9 @@
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  /* Cinematic ramp for reveals — sits a touch later than ease-out-strong,
+     gives the "settling into place" feel instead of arriving with a bump. */
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {
@@ -369,14 +372,62 @@
   }
 }
 
-/* Mascot drifts gently — barely perceptible, only on the hero. */
-@keyframes mascot-float {
+/* Mascot is mid-call — talking, listening, nodding. The motion is
+   deliberately asymmetric: a pure sine wave reads as "drifting in space,"
+   but a real person on a call shifts weight, tilts to listen, leans back
+   to think. The bob and the tilt run on different beats so it never
+   feels like a metronome. */
+@keyframes mascot-on-call {
+  0% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  18% {
+    transform: translateY(-3px) rotate(0.4deg);
+  }
+  35% {
+    transform: translateY(-1px) rotate(1.1deg);
+  }
+  52% {
+    transform: translateY(-5px) rotate(-0.3deg);
+  }
+  70% {
+    transform: translateY(-2px) rotate(0.8deg);
+  }
+  85% {
+    transform: translateY(-4px) rotate(-0.6deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+}
+
+/* Soft pink halo behind the phone — breathes in/out, like an active
+   call indicator on a phone screen. */
+@keyframes call-ring-breathe {
   0%,
   100% {
-    transform: translateY(0) rotate(0deg);
+    transform: scale(0.95);
+    opacity: 0.28;
   }
   50% {
-    transform: translateY(-6px) rotate(-1deg);
+    transform: scale(1.12);
+    opacity: 0.55;
+  }
+}
+
+/* Concentric radio waves expanding from the phone speaker. Three rings
+   on staggered delays create the "signal" cadence. */
+@keyframes call-wave-out {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
   }
 }
 
@@ -459,11 +510,20 @@
 
 /* Scroll-revealed elements stay hidden until the IntersectionObserver
    on the client adds .is-visible. One-shot transitions, not scrubbed
-   timelines — that's the difference between "fade in" and "scrub." */
+   timelines — that's the difference between "fade in" and "scrub."
+
+   Everything moves in a single direction: a subtle upward translate paired
+   with a focus release (blur → 0). Sideways motion fights horizontal
+   reading flow, and "from every direction" reads as gimmicky — so the
+   legacy .reveal-left / .reveal-right classes are mapped onto the same
+   up-and-focus animation. Variety comes from staggered timing, not
+   direction. */
 .reveal-on-scroll,
 .reveal-on-scroll-1,
 .reveal-on-scroll-2,
 .reveal-on-scroll-3,
+.reveal-on-scroll-4,
+.reveal-on-scroll-5,
 .reveal-up-lg,
 .reveal-left,
 .reveal-right,
@@ -471,59 +531,80 @@
 .reveal-scale-y {
   opacity: 0;
   transition:
-    opacity 800ms var(--ease-out-strong),
-    transform 800ms var(--ease-out-strong);
-  will-change: opacity, transform;
+    opacity 900ms var(--ease-reveal),
+    transform 900ms var(--ease-reveal),
+    filter 900ms var(--ease-reveal);
+  will-change: opacity, transform, filter;
 }
 
+/* Default body-copy reveal — small lift, soft focus release. */
 .reveal-on-scroll,
 .reveal-on-scroll-1,
 .reveal-on-scroll-2,
-.reveal-on-scroll-3 {
-  transform: translate3d(0, 32px, 0);
-}
-
-.reveal-on-scroll-1 {
-  transition-delay: 90ms;
-}
-.reveal-on-scroll-2 {
-  transition-delay: 180ms;
-}
-.reveal-on-scroll-3 {
-  transition-delay: 270ms;
-}
-
-.reveal-up-lg {
-  transform: translate3d(0, 56px, 0);
-}
-
-.reveal-left {
-  transform: translate3d(-48px, 0, 0);
-}
-
+.reveal-on-scroll-3,
+.reveal-on-scroll-4,
+.reveal-on-scroll-5,
+.reveal-left,
 .reveal-right {
-  transform: translate3d(48px, 0, 0);
+  filter: blur(8px);
+  transform: translate3d(0, 18px, 0);
 }
 
+/* Headings deserve a touch more travel and a heavier defocus so the eye
+   tracks the settle. Longer duration too — gives weight. */
+.reveal-up-lg {
+  filter: blur(10px);
+  transform: translate3d(0, 28px, 0);
+  transition-duration: 1050ms;
+}
+
+/* Cards / panels — same up motion plus a hint of scale so the surface
+   reads as "stepping forward" rather than just appearing. Very subtle
+   on the scale axis (1.5%) so it doesn't compete with the content. */
 .reveal-scale {
-  transform: scale(0.94);
+  filter: blur(6px);
+  transform: translate3d(0, 14px, 0) scale(0.985);
 }
 
+/* Vertical accent bars (e.g. the pink rule in the help embed) keep
+   their own axis — they read as a "drawing in" gesture, not a reveal. */
 .reveal-scale-y {
   transform: scaleY(0);
   transform-origin: top;
+  transition-duration: 700ms;
+}
+
+/* Staggered slots. Tight rhythm (~70ms) so a cascade still reads as a
+   single composed beat rather than a slow drumroll. */
+.reveal-on-scroll-1 {
+  transition-delay: 70ms;
+}
+.reveal-on-scroll-2 {
+  transition-delay: 140ms;
+}
+.reveal-on-scroll-3 {
+  transition-delay: 210ms;
+}
+.reveal-on-scroll-4 {
+  transition-delay: 280ms;
+}
+.reveal-on-scroll-5 {
+  transition-delay: 350ms;
 }
 
 .reveal-on-scroll.is-visible,
 .reveal-on-scroll-1.is-visible,
 .reveal-on-scroll-2.is-visible,
 .reveal-on-scroll-3.is-visible,
+.reveal-on-scroll-4.is-visible,
+.reveal-on-scroll-5.is-visible,
 .reveal-up-lg.is-visible,
 .reveal-left.is-visible,
 .reveal-right.is-visible,
 .reveal-scale.is-visible,
 .reveal-scale-y.is-visible {
   opacity: 1;
+  filter: blur(0);
   transform: none;
 }
 
@@ -532,12 +613,15 @@
   .reveal-on-scroll-1,
   .reveal-on-scroll-2,
   .reveal-on-scroll-3,
+  .reveal-on-scroll-4,
+  .reveal-on-scroll-5,
   .reveal-up-lg,
   .reveal-left,
   .reveal-right,
   .reveal-scale,
   .reveal-scale-y {
     opacity: 1;
+    filter: none;
     transform: none;
     transition: none;
   }
@@ -551,8 +635,16 @@
   animation: marquee 50s linear infinite;
 }
 
-@utility animate-mascot-float {
-  animation: mascot-float 6s ease-in-out infinite;
+@utility animate-mascot-on-call {
+  animation: mascot-on-call 5.5s var(--ease-in-out-strong) infinite;
+}
+
+@utility animate-call-ring-breathe {
+  animation: call-ring-breathe 2.4s ease-in-out infinite;
+}
+
+@utility animate-call-wave-out {
+  animation: call-wave-out 2.8s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 @utility animate-ping-ring {

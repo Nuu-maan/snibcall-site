@@ -7,6 +7,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { buttonStyles } from "@/components/ui/button";
+
 interface RelayMessage {
   author: string;
   authorColor: string;
@@ -44,14 +46,33 @@ export function Hero() {
     <section className="relative flex flex-col gap-16 pt-20 pb-16 sm:gap-20 md:pt-28 md:pb-24">
       <div className="grid items-center gap-12 md:grid-cols-[1fr_1.2fr] md:gap-16">
         <div className="parallax-y-down relative order-first flex justify-center md:justify-start">
-          <Image
-            alt="snibcall mascot — a strawberry-hooded cat holding a pink phone"
-            className="h-auto w-48 animate-mascot-float select-none [animation-delay:600ms] [transform-origin:50%_80%] sm:w-56 md:w-[280px] lg:w-[300px]"
-            height={907}
-            priority
-            src="/bot.png"
-            width={755}
-          />
+          <div className="relative">
+            {/* Soft pink halo behind the mascot's phone — sells "active call".
+                Positioned over the upper-left quadrant where the phone is held. */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[34%] left-[32%] size-32 -translate-x-1/2 -translate-y-1/2 animate-call-ring-breathe rounded-full bg-[radial-gradient(circle,oklch(0.7_0.16_20_/_0.45)_0%,transparent_70%)] blur-xl sm:size-36 md:size-44"
+            />
+            {/* Three concentric radio waves on staggered delays — the
+                signal cadence of a phone speaker. */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[34%] left-[32%] -translate-x-1/2 -translate-y-1/2"
+            >
+              <span className="absolute inset-0 size-10 animate-call-wave-out rounded-full border border-pink-400/60 sm:size-12 md:size-14" />
+              <span className="absolute inset-0 size-10 animate-call-wave-out rounded-full border border-pink-400/60 [animation-delay:900ms] sm:size-12 md:size-14" />
+              <span className="absolute inset-0 size-10 animate-call-wave-out rounded-full border border-pink-400/60 [animation-delay:1800ms] sm:size-12 md:size-14" />
+            </div>
+
+            <Image
+              alt="snibcall mascot — a strawberry-hooded cat holding a pink phone"
+              className="relative h-auto w-48 animate-mascot-on-call select-none [animation-delay:600ms] [transform-origin:50%_80%] sm:w-56 md:w-[280px] lg:w-[300px]"
+              height={907}
+              priority
+              src="/bot.png"
+              width={755}
+            />
+          </div>
         </div>
 
         <div className="flex flex-col items-start gap-6 text-left">
@@ -99,23 +120,23 @@ export function Hero() {
 
           <div className="mt-2 flex w-full animate-[fade-up_600ms_cubic-bezier(0.23,1,0.32,1)_220ms_both] flex-col items-stretch gap-2.5 sm:w-auto sm:flex-row sm:items-center">
             <Link
-              className="group inline-flex items-center justify-center gap-2 rounded-md bg-pink-500 px-4 py-2.5 font-semibold text-[14px] text-white tracking-tight transition-[background-color,transform,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-pink-600 hover:shadow-[0_8px_28px_-6px_oklch(0.7_0.16_20_/_0.55)] active:scale-[0.97]"
+              className={buttonStyles({ variant: "primary", size: "lg" })}
               href="/invite"
             >
               <HugeiconsIcon
-                className="size-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-[8deg]"
+                className="size-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:rotate-[8deg]"
                 icon={Call02Icon}
                 strokeWidth={2.2}
               />
               Add to Discord
             </Link>
             <Link
-              className="group inline-flex items-center justify-center gap-1.5 rounded-md border border-border bg-card px-4 py-2.5 font-semibold text-[14px] text-foreground tracking-tight transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-secondary active:scale-[0.97]"
+              className={buttonStyles({ variant: "secondary", size: "lg" })}
               href="/commands"
             >
               Browse commands
               <HugeiconsIcon
-                className="size-3.5 opacity-70 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="size-3.5 opacity-70 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
                 icon={ArrowUpRight01Icon}
                 strokeWidth={2.2}
               />

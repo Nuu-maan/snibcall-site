@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 
 import { CommandsExplorer } from "@/components/sections/commands-explorer";
-import { Footer } from "@/components/sections/footer";
-import { Nav } from "@/components/sections/nav";
 
 const TITLE = "commands";
 const DESCRIPTION =
@@ -26,13 +24,5 @@ export const metadata: Metadata = {
 };
 
 export default function CommandsPage() {
-  return (
-    <>
-      <main className="relative mx-auto w-full max-w-5xl px-5 sm:px-6">
-        <Nav />
-        <CommandsExplorer />
-      </main>
-      <Footer />
-    </>
-  );
+  return <CommandsExplorer />;
 }

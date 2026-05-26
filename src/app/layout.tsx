@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Footer } from "@/components/sections/footer";
+import { Nav } from "@/components/sections/nav";
 import {
   INVITE_URL,
   SITE_DESCRIPTION,
@@ -149,14 +151,18 @@ export default function RootLayout({
       lang="en"
     >
       <body
-        className="flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-foreground antialiased"
+        className="flex min-h-full flex-col overflow-x-clip bg-background font-sans text-foreground antialiased"
         data-scroll-behavior="smooth"
       >
         <div
           aria-hidden="true"
           className="scroll-progress fixed top-0 left-0 z-[200] h-0.5 w-full bg-pink-500"
         />
-        {children}
+        <Nav />
+        <main className="relative mx-auto w-full max-w-5xl flex-1 overflow-x-clip px-5 sm:px-6">
+          {children}
+        </main>
+        <Footer />
         <ScrollReveal />
         <script
           // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD is generated server-side from trusted constants.

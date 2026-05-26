@@ -190,9 +190,9 @@ export function HelpPeek() {
         }
       />
 
-      <div className="grid w-full gap-4 md:grid-cols-[minmax(0,1fr)_240px] md:gap-6">
-        <div className="reveal-left order-2 md:order-1">
-          <div className="parallax-y-up-sm flex overflow-hidden rounded-xl border border-border bg-card">
+      <div className="grid w-full min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_240px] md:gap-6">
+        <div className="reveal-on-scroll order-2 min-w-0 md:order-1">
+          <div className="flex overflow-hidden rounded-xl border border-border bg-card">
             <div className="reveal-scale-y w-[3px] shrink-0 bg-pink-500" />
             <div className="flex min-w-0 flex-1 flex-col">
               <div className="flex items-center gap-2 border-border/60 border-b px-4 py-3 sm:px-5">
@@ -218,7 +218,7 @@ export function HelpPeek() {
           </div>
         </div>
 
-        <aside className="reveal-right order-1 flex flex-col gap-3 md:order-2 md:gap-4">
+        <aside className="reveal-on-scroll-1 order-1 flex min-w-0 flex-col gap-3 md:order-2 md:gap-4">
           <div className="hidden flex-col gap-2 md:flex">
             <span className="font-mono font-semibold text-[10px] text-muted-foreground/80 uppercase tracking-[0.18em]">
               The command
