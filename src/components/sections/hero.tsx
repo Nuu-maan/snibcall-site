@@ -4,11 +4,10 @@ import {
   HashtagIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import Image from "next/image";
 import Link from "next/link";
 
 import { buttonStyles } from "@/components/ui/button";
-import { MascotTilt } from "@/components/ui/mascot-tilt";
+import { Mascot3D } from "@/components/ui/mascot-3d";
 
 interface RelayMessage {
   author: string;
@@ -44,7 +43,7 @@ const relayLog: RelayMessage[] = [
 
 export function Hero() {
   return (
-    <section className="relative flex flex-col gap-16 pt-20 pb-16 sm:gap-20 md:pt-28 md:pb-24">
+    <section className="relative flex flex-col gap-16 pt-10 pb-16 sm:gap-20 md:pt-14 md:pb-24">
       <div className="grid items-center gap-12 md:grid-cols-[1fr_1.2fr] md:gap-16">
         <div className="parallax-y-down relative order-first flex justify-center md:justify-start">
           <div className="relative">
@@ -65,16 +64,10 @@ export function Hero() {
               <span className="absolute inset-0 size-10 animate-call-wave-out rounded-full border border-pink-400/60 [animation-delay:1800ms] sm:size-12 md:size-14" />
             </div>
 
-            <MascotTilt>
-              <Image
-                alt="snibcall mascot — a strawberry-hooded cat holding a pink phone"
-                className="relative h-auto w-48 animate-mascot-on-call select-none [animation-delay:600ms] [transform-origin:50%_80%] sm:w-56 md:w-[280px] lg:w-[300px]"
-                height={907}
-                priority
-                src="/bot.png"
-                width={755}
-              />
-            </MascotTilt>
+            <Mascot3D
+              alt="snibcall mascot — a strawberry-hooded cat holding a pink phone"
+              className="relative w-64 animate-mascot-on-call [animation-delay:600ms] [transform-origin:50%_80%] sm:w-80 md:w-[380px] lg:w-[440px]"
+            />
           </div>
         </div>
 
