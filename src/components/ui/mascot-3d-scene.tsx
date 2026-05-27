@@ -71,7 +71,10 @@ function Model({ onReady }: { onReady: () => void }) {
 
   return (
     <group ref={groupRef}>
-      <primitive object={scene} />
+      {/* GLB authored facing -Z; flip 180° so the mascot faces the camera. */}
+      <group rotation={[0, Math.PI, 0]}>
+        <primitive object={scene} />
+      </group>
     </group>
   );
 }
