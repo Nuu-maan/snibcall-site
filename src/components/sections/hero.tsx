@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { buttonStyles } from "@/components/ui/button";
+import { MascotTilt } from "@/components/ui/mascot-tilt";
 
 interface RelayMessage {
   author: string;
@@ -64,14 +65,16 @@ export function Hero() {
               <span className="absolute inset-0 size-10 animate-call-wave-out rounded-full border border-pink-400/60 [animation-delay:1800ms] sm:size-12 md:size-14" />
             </div>
 
-            <Image
-              alt="snibcall mascot — a strawberry-hooded cat holding a pink phone"
-              className="relative h-auto w-48 animate-mascot-on-call select-none [animation-delay:600ms] [transform-origin:50%_80%] sm:w-56 md:w-[280px] lg:w-[300px]"
-              height={907}
-              priority
-              src="/bot.png"
-              width={755}
-            />
+            <MascotTilt>
+              <Image
+                alt="snibcall mascot — a strawberry-hooded cat holding a pink phone"
+                className="relative h-auto w-48 animate-mascot-on-call select-none [animation-delay:600ms] [transform-origin:50%_80%] sm:w-56 md:w-[280px] lg:w-[300px]"
+                height={907}
+                priority
+                src="/bot.png"
+                width={755}
+              />
+            </MascotTilt>
           </div>
         </div>
 
