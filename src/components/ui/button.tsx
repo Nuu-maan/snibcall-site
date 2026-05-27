@@ -27,15 +27,14 @@ export const buttonStyles = cva(
   {
     variants: {
       variant: {
-        // The inset 1px white highlight + the outer pink wash sell the
-        // "raised pink chip" feel without a real gradient. The shadow
-        // changes shape on hover (tighter → broader, pink-tinted) so the
-        // button feels like it's lifting toward the cursor.
+        // Liquid-glass pink: a translucent pink surface with a top
+        // specular highlight and saturated backdrop blur, so the button
+        // reads as a refractive chip lifting off the page rather than a
+        // flat fill. The hover utility deepens the tint + spreads the
+        // outer wash so the surface feels like it leans toward the cursor.
         primary: [
-          "bg-pink-500 text-white",
-          "shadow-[inset_0_1px_0_oklch(1_0_0_/_0.18),0_1px_2px_oklch(0_0_0_/_0.35)]",
-          "hover:bg-pink-600",
-          "hover:shadow-[inset_0_1px_0_oklch(1_0_0_/_0.18),0_10px_28px_-8px_oklch(0.7_0.16_20_/_0.55)]",
+          "liquid-glass-pink text-white",
+          "hover:liquid-glass-pink-hover",
           "focus-visible:ring-pink-500/50",
         ].join(" "),
         secondary: [

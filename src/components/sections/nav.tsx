@@ -130,7 +130,7 @@ export function Nav() {
   }
 
   return (
-    <header className="nav-scrolled sticky top-0 z-[100] w-full border-border/60 border-b bg-background/85 backdrop-blur-md">
+    <header className="nav-scrolled sticky top-0 z-[100] w-full bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-6 px-5 py-3 sm:px-6">
         <Link
           aria-label="snibcall home"
@@ -154,7 +154,7 @@ export function Nav() {
         </Link>
 
         <nav aria-label="primary" className="hidden md:block">
-          <ul className="flex items-center gap-0.5 rounded-full border border-border/70 bg-card/60 p-1 backdrop-blur-sm">
+          <ul className="flex items-center gap-0.5 rounded-full border border-white/[0.07] bg-[oklch(0.16_0.006_30_/_0.78)] p-1 shadow-[inset_0_1px_0_oklch(1_0_0_/_0.06),0_2px_8px_-2px_oklch(0_0_0_/_0.5)] backdrop-blur-md">
             {navLinks.map((link) => {
               const active = isActive(pathname, link, activeSection);
               return (

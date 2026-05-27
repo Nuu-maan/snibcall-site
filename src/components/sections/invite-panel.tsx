@@ -12,6 +12,7 @@ import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
 import Image from "next/image";
 
 import { buttonStyles } from "@/components/ui/button";
+import { MascotTilt } from "@/components/ui/mascot-tilt";
 
 const CLIENT_ID = "1508101748714377286";
 const INVITE_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}`;
@@ -79,14 +80,16 @@ export function InvitePanel() {
     <>
       <section className="relative flex flex-col items-center gap-6 py-20 text-center md:py-28">
         <div className="relative flex animate-mascot-float items-center justify-center [transform-origin:50%_80%]">
-          <Image
-            alt="snibcall mascot"
-            className="h-auto w-36 select-none sm:w-44"
-            height={907}
-            priority
-            src="/bot.png"
-            width={755}
-          />
+          <MascotTilt>
+            <Image
+              alt="snibcall mascot"
+              className="h-auto w-36 select-none sm:w-44"
+              height={907}
+              priority
+              src="/bot.png"
+              width={755}
+            />
+          </MascotTilt>
         </div>
 
         <span className="reveal-on-scroll inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-medium text-[11.5px] text-muted-foreground tracking-tight">
