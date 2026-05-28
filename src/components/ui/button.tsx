@@ -3,18 +3,18 @@ import type { ButtonHTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils";
 
-// Unified button language for the site. Keep variants narrow —
+// Unified button language for the site. Keep variants narrow,
 // every additional knob makes the system harder to use consistently.
 //
-//   primary    — pink, the one true "do the thing" action.
-//   secondary  — dark glass with a border, used when there are two
-//                co-equal actions next to a primary.
-//   ghost      — text-only, for low-stakes links and inline triggers.
-//   icon       — square, content-free button for icon-only triggers.
+//   primary:   pink, the one true "do the thing" action.
+//   secondary: dark glass with a border, used when there are two
+//              co-equal actions next to a primary.
+//   ghost:     text-only, for low-stakes links and inline triggers.
+//   icon:      square, content-free button for icon-only triggers.
 //
 // Shared chrome lives in the base: a single radius, a single easing,
 // a single focus ring. That's where the "looks like one app" feel
-// comes from — not from the variants themselves.
+// comes from, not from the variants themselves.
 export const buttonStyles = cva(
   [
     "group/btn inline-flex shrink-0 select-none items-center justify-center gap-2",

@@ -69,7 +69,7 @@ export function Footer() {
               <span className="relative size-1.5 animate-status-pulse rounded-full bg-pink-500" />
             </span>
             <span className="font-medium text-[11.5px] text-muted-foreground tracking-tight">
-              Online — taking calls
+              Online, taking calls
             </span>
           </div>
 

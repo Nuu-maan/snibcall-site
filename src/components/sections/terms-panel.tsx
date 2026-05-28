@@ -134,7 +134,7 @@ const sections: TermsSection[] = [
       <>
         <p>
           You agree not to use snibcall, directly or indirectly, to do any of
-          the following. This list is not exhaustive — anything that&apos;s
+          the following. This list is not exhaustive, anything that&apos;s
           obviously harmful, illegal, or designed to abuse the relay belongs
           here.
         </p>
@@ -148,7 +148,7 @@ const sections: TermsSection[] = [
           </Bullet>
           <Bullet>
             Harass, threaten, dox, stalk, impersonate, or otherwise harm another
-            person — whether on your side of the call or the other.
+            person, whether on your side of the call or the other.
           </Bullet>
           <Bullet>
             Spam, flood, mass-mention, advertise, scam, phish, or distribute
@@ -196,7 +196,7 @@ const sections: TermsSection[] = [
         <p>
           The messages, images, and links you send through snibcall are{" "}
           <strong className="text-foreground">yours</strong>. We do not claim
-          ownership of any of it. The bot does not store message contents — see
+          ownership of any of it. The bot does not store message contents, see
           the{" "}
           <Link
             className="text-foreground underline decoration-pink-500/40 underline-offset-2 hover:decoration-pink-500"
@@ -231,7 +231,7 @@ const sections: TermsSection[] = [
           your members use it inside that server.
         </Bullet>
         <Bullet>
-          You agree to moderate your own community — kick, ban, or restrict
+          You agree to moderate your own community, kick, ban, or restrict
           members who misuse the relay.
         </Bullet>
         <Bullet>
@@ -332,15 +332,15 @@ const sections: TermsSection[] = [
           <strong className="text-foreground">
             without warranty of any kind
           </strong>
-          , express or implied — including but not limited to merchantability,
+          , express or implied, including but not limited to merchantability,
           fitness for a particular purpose, accuracy, uptime, or
           non-infringement. Using it is at your own risk.
         </p>
         <p className="mt-3">
           To the maximum extent permitted by law, the operator&apos;s total
           aggregate liability arising out of or in connection with snibcall is
-          limited to the amount you paid us in the 12 months preceding the claim
-          — which, since the service is free, is{" "}
+          limited to the amount you paid us in the 12 months preceding the
+          claim, which, since the service is free, is{" "}
           <strong className="text-foreground">US&nbsp;$0</strong>.
         </p>
         <p className="mt-3">
@@ -369,8 +369,8 @@ const sections: TermsSection[] = [
           kicking the bot, or both.
         </Bullet>
         <Bullet>
-          We can suspend or terminate your access — for an individual user, a
-          single server, or all servers — at any time, with or without notice,
+          We can suspend or terminate your access, for an individual user, a
+          single server, or all servers, at any time, with or without notice,
           for any reason we consider sufficient (including but not limited to
           violating these terms).
         </Bullet>
@@ -392,7 +392,7 @@ const sections: TermsSection[] = [
         update the &ldquo;last updated&rdquo; date below and announce material
         changes in the support server. Your continued use of snibcall after a
         change takes effect means you accept the new terms. If you don&apos;t
-        agree, kick the bot — that&apos;s the off switch.
+        agree, kick the bot, that&apos;s the off switch.
       </p>
     ),
   },
@@ -452,7 +452,7 @@ export function TermsPanel() {
         </h1>
 
         <p className="reveal-on-scroll-1 max-w-xl text-[15.5px] text-muted-foreground leading-[1.65] sm:text-[16px]">
-          The rules for using snibcall — what we offer, what you can do with it,
+          The rules for using snibcall, what we offer, what you can do with it,
           and what we expect from you in return. Written in plain words, but
           binding.
         </p>
@@ -474,7 +474,7 @@ export function TermsPanel() {
               </h2>
               <ul className="flex flex-col gap-2 text-[14px] text-muted-foreground leading-[1.65]">
                 <Bullet>
-                  Be 13 or older and follow Discord&apos;s rules — they apply
+                  Be 13 or older and follow Discord&apos;s rules, they apply
                   here too.
                 </Bullet>
                 <Bullet>
@@ -543,7 +543,7 @@ export function TermsPanel() {
                   Questions, disputes, or report a violation?
                 </h3>
                 <p className="max-w-md text-[13.5px] text-muted-foreground leading-[1.65]">
-                  Open a ticket in the support server — the operator reads
+                  Open a ticket in the support server, the operator reads
                   everything personally.
                 </p>
               </div>

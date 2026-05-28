@@ -11,14 +11,14 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   alternates: { canonical: "/invite" },
   openGraph: {
-    title: `${TITLE} snibcall — add it to your server`,
+    title: `${TITLE} snibcall · add it to your server`,
     description: DESCRIPTION,
     url: "/invite",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${TITLE} snibcall — add it to your server`,
+    title: `${TITLE} snibcall · add it to your server`,
     description: DESCRIPTION,
   },
 };

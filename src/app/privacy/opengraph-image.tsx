@@ -1,6 +1,6 @@
 import { OG_CONTENT_TYPE, OG_SIZE, renderOgCard } from "@/lib/og-card";
 
-export const alt = "snibcall privacy — what we store, in plain words";
+export const alt = "snibcall privacy · what we store, in plain words";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

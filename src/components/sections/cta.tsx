@@ -27,7 +27,7 @@ export function CTA() {
         <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[14px] text-foreground">
           s.call
         </code>{" "}
-        and you&apos;re in a queue. When another server does the same —
+        and you&apos;re in a queue. When another server does the same,
         you&apos;re live.
       </p>
 
@@ -56,7 +56,7 @@ export function CTA() {
         </Link>
       </div>
 
-      <p className="reveal-on-scroll-3 mt-6 font-mono text-[11px] text-muted-foreground/80 uppercase tracking-[0.16em]">
+      <p className="reveal-on-scroll-3 mt-6 font-mono text-[11.5px] text-muted-foreground/80 tracking-tight">
         No signup · No dashboard · No card needed
       </p>
     </section>

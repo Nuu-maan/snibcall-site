@@ -51,12 +51,12 @@ const sections: PolicySection[] = [
             currently queued or in a call, while the call is live.
           </Bullet>
           <Bullet>
-            <strong className="text-foreground">Block-list entries</strong> —
-            the server IDs your admins have blocked. These survive restarts.
+            <strong className="text-foreground">Block-list entries</strong>: the
+            server IDs your admins have blocked. These survive restarts.
           </Bullet>
           <Bullet>
-            <strong className="text-foreground">Basic operational logs</strong>{" "}
-            — command names, timestamps, error traces. Used to debug crashes.
+            <strong className="text-foreground">Basic operational logs</strong>:
+            command names, timestamps, error traces. Used to debug crashes.
           </Bullet>
         </ul>
       </>
@@ -70,11 +70,11 @@ const sections: PolicySection[] = [
       <ul className="flex flex-col gap-2.5">
         <Bullet>
           <strong className="text-foreground">Message contents.</strong>{" "}
-          Messages are relayed in-flight via webhook and immediately discarded —
+          Messages are relayed in-flight via webhook and immediately discarded,
           never written to disk.
         </Bullet>
         <Bullet>
-          <strong className="text-foreground">Your Discord profile</strong> — no
+          <strong className="text-foreground">Your Discord profile</strong>: no
           avatars, usernames, or IDs stored. The webhook uses them at the moment
           of relay and forgets them.
         </Bullet>
@@ -109,20 +109,20 @@ const sections: PolicySection[] = [
     body: (
       <ul className="flex flex-col gap-2.5">
         <Bullet>
-          <strong className="text-foreground">Call state</strong> — wiped the
+          <strong className="text-foreground">Call state</strong>: wiped the
           moment a call ends, hangs up, or times out (5 min of silence).
         </Bullet>
         <Bullet>
-          <strong className="text-foreground">Block-list</strong> — kept until
-          an admin runs{" "}
+          <strong className="text-foreground">Block-list</strong>: kept until an
+          admin runs{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             s.unblock
           </code>
           , or the bot is removed from the server.
         </Bullet>
         <Bullet>
-          <strong className="text-foreground">Operational logs</strong> —
-          rotated after 14 days.
+          <strong className="text-foreground">Operational logs</strong>: rotated
+          after 14 days.
         </Bullet>
       </ul>
     ),
@@ -136,12 +136,12 @@ const sections: PolicySection[] = [
         <p>At any time you can:</p>
         <ul className="mt-3 flex flex-col gap-2.5">
           <Bullet>
-            Kick snibcall from your server — its presence is the only thing
-            tying anything to your server.
+            Kick snibcall from your server, its presence is the only thing tying
+            anything to your server.
           </Bullet>
           <Bullet>
             Ask the operator to wipe your server&apos;s block-list and any logs
-            that reference it — see the contact card below.
+            that reference it, see the contact card below.
           </Bullet>
           <Bullet>Revoke any permission Discord granted, anytime.</Bullet>
         </ul>
@@ -213,9 +213,7 @@ export function PrivacyPanel() {
                 The short version
               </h2>
               <ul className="flex flex-col gap-2 text-[14px] text-muted-foreground leading-[1.65]">
-                <Bullet>
-                  Messages relay in-flight — they are never saved.
-                </Bullet>
+                <Bullet>Messages relay in-flight, they are never saved.</Bullet>
                 <Bullet>
                   Only your block-list and basic logs are persisted.
                 </Bullet>
@@ -223,7 +221,7 @@ export function PrivacyPanel() {
                   Nothing is shared with third parties. There aren&apos;t any.
                 </Bullet>
                 <Bullet>
-                  Kick the bot at any time — that&apos;s the off switch.
+                  Kick the bot at any time, that&apos;s the off switch.
                 </Bullet>
               </ul>
             </div>
@@ -279,7 +277,7 @@ export function PrivacyPanel() {
                   Questions, removal requests, or anything else?
                 </h3>
                 <p className="max-w-md text-[13.5px] text-muted-foreground leading-[1.65]">
-                  Open a ticket in the support server — the operator reads
+                  Open a ticket in the support server, the operator reads
                   everything personally.
                 </p>
               </div>

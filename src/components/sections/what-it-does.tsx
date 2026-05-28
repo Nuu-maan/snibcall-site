@@ -21,7 +21,7 @@ const features: Feature[] = [
     icon: Call02Icon,
     title: "Cross-server calls",
     description:
-      "Run s.call in two servers — get paired and start chatting instantly.",
+      "Run s.call in two servers, get paired and start chatting instantly.",
   },
   {
     icon: UserMultipleIcon,
@@ -33,7 +33,7 @@ const features: Feature[] = [
     icon: BubbleChatIcon,
     title: "Replies that travel",
     description:
-      "Reply to anyone — the original message is quoted on the other side.",
+      "Reply to anyone, the original message is quoted on the other side.",
   },
   {
     icon: FavouriteIcon,
@@ -63,7 +63,7 @@ export function WhatItDoes() {
       <SectionHeading
         className="reveal-on-scroll"
         eyebrow="Features"
-        subtitle="Everything the bot does today — no dashboards, no setup screens."
+        subtitle="Everything the bot does today. No dashboards, no setup screens."
         title={
           <>
             What it <em className="font-medium italic">does.</em>

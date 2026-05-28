@@ -88,7 +88,7 @@ export function MascotScene({ onReady }: MascotSceneProps) {
     <Canvas
       camera={{ position: [0, 0, 3], fov: 35 }}
       dpr={[1, 2]}
-      // `flat` disables ACES tone mapping — whites stay actually white
+      // `flat` disables ACES tone mapping, whites stay actually white
       // instead of getting compressed to grey.
       flat
       gl={{ alpha: true, antialias: true }}

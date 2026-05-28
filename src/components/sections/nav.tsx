@@ -17,9 +17,9 @@ import { Button, buttonStyles } from "@/components/ui/button";
 interface NavLink {
   href: string;
   label: string;
-  /** For routed links — the pathname this link owns. */
+  /** For routed links, the pathname this link owns. */
   match?: string;
-  /** For hash links on the home page — the section id to scroll-spy on. */
+  /** For hash links on the home page, the section id to scroll-spy on. */
   section?: string;
 }
 
@@ -73,13 +73,13 @@ export function Nav() {
 
   // Close the mobile sheet on route change so the menu doesn't linger
   // over the new page after a link click.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: intentional — close on every navigation.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: intentional, close on every navigation.
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
   // Scroll-spy for home-page anchor links. We track which of the named
-  // sections is currently "the one being read" — defined as the section
+  // sections is currently "the one being read", defined as the section
   // crossing the band between 30% and 50% from the top of the viewport.
   // That keeps the highlight from flipping every time a tall section's
   // edge brushes the very top or bottom of the screen.

@@ -29,7 +29,7 @@ const commandRows: CommandRow[] = [
   {
     cmd: "s.call",
     alias: "s.c",
-    desc: "start a call — pair with another server.",
+    desc: "start a call. pair with another server.",
   },
   {
     cmd: "s.skip",
@@ -45,7 +45,7 @@ const commandRows: CommandRow[] = [
   {
     cmd: "s.mask",
     alias: "s.anon",
-    desc: "hide your name and avatar — turn anonymous.",
+    desc: "hide your name and avatar. turn anonymous.",
   },
   { cmd: "s.unmask", desc: "remove your mask and show your real name again." },
   { cmd: "s.block", desc: "block a server from matching with yours." },
@@ -56,7 +56,7 @@ const commandRows: CommandRow[] = [
 ];
 
 const tips = [
-  "mentions never ping across servers — safe to be casual.",
+  "mentions never ping across servers. safe to be casual.",
   "needs Manage Webhooks in the call channel.",
   "one call per channel · same-server channels can't match.",
   "admins: s.block to refuse a server forever.",
@@ -77,8 +77,8 @@ const pages: HelpPage[] = [
           run{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             s.call
-          </code>{" "}
-          — when another server does the same, you&apos;re connected.
+          </code>
+          , when another server does the same, you&apos;re connected.
         </p>
         <p className="text-[13px] text-muted-foreground leading-[1.65]">
           messages relay both ways. it feels like one shared room.
@@ -109,7 +109,7 @@ const pages: HelpPage[] = [
               ) : null}
             </div>
             <span className="text-[12.5px] text-muted-foreground leading-snug">
-              <span className="hidden sm:inline">— </span>
+              <span className="hidden sm:inline">· </span>
               {row.desc}
             </span>
           </li>
@@ -220,7 +220,7 @@ export function HelpPeek() {
 
         <aside className="reveal-on-scroll-1 order-1 flex min-w-0 flex-col gap-3 md:order-2 md:gap-4">
           <div className="hidden flex-col gap-2 md:flex">
-            <span className="font-mono font-semibold text-[10px] text-muted-foreground/80 uppercase tracking-[0.18em]">
+            <span className="font-mono font-semibold text-[10.5px] text-muted-foreground/80 tracking-tight">
               The command
             </span>
             <code className="inline-flex w-fit items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 font-mono text-[13px] text-foreground">
