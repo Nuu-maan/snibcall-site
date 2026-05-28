@@ -1,6 +1,6 @@
 import { OG_CONTENT_TYPE, OG_SIZE, renderOgCard } from "@/lib/og-card";
 
-export const alt = "snibcall commands — every command, in one place";
+export const alt = "snibcall commands · every command, in one place";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

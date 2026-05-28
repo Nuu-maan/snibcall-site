@@ -83,7 +83,7 @@ const commands: Command[] = [
     category: "social",
     icon: IncognitoIcon,
     description:
-      "Hide your name and avatar — turn anonymous. Run again to reroll a new identity.",
+      "Hide your name and avatar. Turn anonymous. Run again to reroll a new identity.",
     usage: "s.mask",
     cooldown: "5s",
     needs: [],
@@ -146,7 +146,7 @@ const commands: Command[] = [
     category: "misc",
     icon: Activity03Icon,
     description:
-      "Tiny health check — gateway latency and how long the bot has been up.",
+      "Tiny health check: gateway latency and how long the bot has been up.",
     usage: "s.ping",
     cooldown: "3s",
     needs: [],
@@ -235,7 +235,7 @@ function CommandCard({ command }: { command: Command }) {
 
       <div className="flex flex-col gap-2 border-border/60 border-t pt-4">
         <div className="flex items-center justify-between gap-2">
-          <span className="font-mono font-semibold text-[10px] text-muted-foreground/80 uppercase tracking-[0.18em]">
+          <span className="font-mono font-semibold text-[10.5px] text-muted-foreground/80 tracking-tight">
             Usage
           </span>
           <button
@@ -255,7 +255,7 @@ function CommandCard({ command }: { command: Command }) {
         </div>
 
         <div className="flex items-center justify-between gap-2">
-          <span className="font-mono font-semibold text-[10px] text-muted-foreground/80 uppercase tracking-[0.18em]">
+          <span className="font-mono font-semibold text-[10.5px] text-muted-foreground/80 tracking-tight">
             Cooldown
           </span>
           <span className="rounded-md border border-border bg-background px-2 py-0.5 font-mono font-semibold text-[12px] text-foreground tabular-nums">
@@ -265,7 +265,7 @@ function CommandCard({ command }: { command: Command }) {
 
         {command.needs.length > 0 ? (
           <div className="flex flex-col gap-1.5 pt-1">
-            <span className="font-mono font-semibold text-[10px] text-muted-foreground/80 uppercase tracking-[0.18em]">
+            <span className="font-mono font-semibold text-[10.5px] text-muted-foreground/80 tracking-tight">
               Needs
             </span>
             <div className="flex flex-wrap gap-1.5">

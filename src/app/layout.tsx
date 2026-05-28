@@ -27,7 +27,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-// Fraunces — soft, characterful display serif that matches the mascot's
+// Fraunces: soft, characterful display serif that matches the mascot's
 // warm, slightly vintage personality while staying grown-up at large sizes.
 const fraunces = Fraunces({
   variable: "--font-display",
@@ -39,8 +39,8 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
-    template: `%s — ${SITE_NAME}`,
+    default: `${SITE_NAME} · ${SITE_TAGLINE}`,
+    template: `%s · ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
@@ -56,14 +56,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} · ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     url: "/",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} · ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     creator: "@snibcall",
   },
@@ -95,7 +95,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-// JSON-LD structured data — helps Google show the bot as a SoftwareApplication
+// JSON-LD structured data: helps Google show the bot as a SoftwareApplication
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [

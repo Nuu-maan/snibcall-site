@@ -11,14 +11,14 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   alternates: { canonical: "/privacy" },
   openGraph: {
-    title: `${TITLE} — snibcall`,
+    title: `${TITLE} · snibcall`,
     description: DESCRIPTION,
     url: "/privacy",
     type: "article",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${TITLE} — snibcall`,
+    title: `${TITLE} · snibcall`,
     description: DESCRIPTION,
   },
 };

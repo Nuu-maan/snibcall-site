@@ -25,7 +25,7 @@ const relayLog: RelayMessage[] = [
   {
     author: "kai",
     authorColor: "oklch(0.72 0.14 240)",
-    text: "joining now — this place is cute",
+    text: "joining now, this place is cute",
     viaPair: true,
   },
   {
@@ -36,7 +36,7 @@ const relayLog: RelayMessage[] = [
   {
     author: "river",
     authorColor: "oklch(0.68 0.12 350)",
-    text: "yep — webhook magic",
+    text: "yep, webhook magic",
     viaPair: true,
   },
 ];
@@ -47,13 +47,13 @@ export function Hero() {
       <div className="grid items-center gap-12 md:grid-cols-[1fr_1.2fr] md:gap-16">
         <div className="parallax-y-down relative order-first flex justify-center md:justify-start">
           <div className="relative">
-            {/* Soft pink halo behind the mascot's phone — sells "active call".
+            {/* Soft pink halo behind the mascot's phone, sells "active call".
                 Positioned over the upper-left quadrant where the phone is held. */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute top-[34%] left-[32%] size-32 -translate-x-1/2 -translate-y-1/2 animate-call-ring-breathe rounded-full bg-[radial-gradient(circle,oklch(0.7_0.16_20_/_0.45)_0%,transparent_70%)] blur-xl sm:size-36 md:size-44"
             />
-            {/* Three concentric radio waves on staggered delays — the
+            {/* Three concentric radio waves on staggered delays: the
                 signal cadence of a phone speaker. */}
             <div
               aria-hidden="true"
@@ -65,7 +65,7 @@ export function Hero() {
             </div>
 
             <Mascot3D
-              alt="snibcall mascot — a strawberry-hooded cat holding a pink phone"
+              alt="snibcall mascot, a strawberry-hooded cat holding a pink phone"
               className="relative w-64 animate-mascot-on-call [animation-delay:600ms] [transform-origin:50%_80%] sm:w-80 md:w-[380px] lg:w-[440px]"
             />
           </div>
@@ -80,7 +80,7 @@ export function Hero() {
               />
               <span className="relative size-1.5 rounded-full bg-pink-500" />
             </span>
-            v1 — Public beta
+            v1 · Public beta
           </span>
 
           <h1 className="font-normal text-[44px] text-foreground leading-[1] tracking-[-0.03em] sm:text-[56px] lg:text-[68px] xl:text-[72px]">
@@ -110,7 +110,7 @@ export function Hero() {
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[14px] text-foreground">
               s.call
             </code>
-            , they pair up, and every message relays both ways — wearing the
+            , they pair up, and every message relays both ways, wearing the
             original sender&apos;s name and avatar.
           </p>
 
@@ -209,7 +209,7 @@ export function Hero() {
         </div>
 
         <p className="reveal-on-scroll-2 mt-4 max-w-xl text-[13.5px] text-muted-foreground leading-[1.6]">
-          Messages in the paired channel relay through a webhook — carrying the
+          Messages in the paired channel relay through a webhook, carrying the
           original author&apos;s name and avatar to the other side.
         </p>
       </div>

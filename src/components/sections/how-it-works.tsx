@@ -25,7 +25,7 @@ const steps: Step[] = [
     number: "02",
     icon: CheckmarkBadge02Icon,
     title: "Server B runs s.call",
-    body: "Instantly paired — a webhook is set up on both ends.",
+    body: "Instantly paired. A webhook is set up on both ends.",
   },
   {
     number: "03",
@@ -44,7 +44,7 @@ export function HowItWorks() {
       <SectionHeading
         className="reveal-on-scroll"
         eyebrow="How it works"
-        subtitle="Three steps. No dashboards, no setup screens — it all happens in Discord."
+        subtitle="Three steps. No dashboards, no setup screens. It all happens in Discord."
         title={
           <>
             From command to call{" "}

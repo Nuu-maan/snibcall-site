@@ -56,7 +56,7 @@
   --radius-3xl: calc(var(--radius) * 2);
   --radius-4xl: calc(var(--radius) * 2.5);
 
-  /* Strawberry-mascot pink — pushed toward the lit hood's vivid edge so
+  /* Strawberry-mascot pink, pushed toward the lit hood's vivid edge so
      the accent reads bright on the dark theme instead of dusty. */
   --color-pink-50: oklch(0.97 0.018 15);
   --color-pink-100: oklch(0.93 0.045 15);
@@ -76,17 +76,17 @@
   --color-success: oklch(0.74 0.16 145);
   --color-danger: oklch(0.65 0.21 25);
 
-  /* Motion — Emil-style strong curves. Stock CSS easings lack punch. */
+  /* Motion, Emil-style strong curves. Stock CSS easings lack punch. */
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
-  /* Cinematic ramp for reveals — sits a touch later than ease-out-strong,
+  /* Cinematic ramp for reveals, sits a touch later than ease-out-strong,
      gives the "settling into place" feel instead of arriving with a bump. */
   --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {
-  /* Very subtle warm undertone — feels like aged paper, not aluminum. */
+  /* Very subtle warm undertone, feels like aged paper, not aluminum. */
   --background: oklch(0.135 0.006 30);
   --foreground: oklch(0.97 0.004 30);
   --card: oklch(0.17 0.006 30);
@@ -167,7 +167,31 @@
     @apply font-sans;
   }
   body {
+    cursor:
+      url("/cursor-strawberry.svg") 6 4,
+      auto;
     @apply bg-background text-foreground;
+  }
+  a,
+  button,
+  summary,
+  [role="button"],
+  label[for],
+  select,
+  .cursor-pointer {
+    cursor:
+      url("/cursor-strawberry-pointer.svg") 10 8,
+      pointer;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="search"],
+  input[type="url"],
+  input[type="password"],
+  input[type="number"],
+  textarea,
+  [contenteditable="true"] {
+    cursor: text;
   }
   ::selection {
     color: oklch(0.99 0 0);
@@ -180,7 +204,7 @@
   html {
     scroll-behavior: smooth;
   }
-  /* Fraunces is reserved for display sizes only — at small sizes the serif
+  /* Fraunces is reserved for display sizes only, at small sizes the serif
      details get noisy. h3 and below stay on the sans for clarity. */
   h1,
   h2 {
@@ -280,7 +304,7 @@
   }
 }
 
-/* Used for paginated content swaps — blur masks the swap so two
+/* Used for paginated content swaps, blur masks the swap so two
    distinct states never sit on top of each other readably. */
 @keyframes fade-blur-in {
   from {
@@ -373,7 +397,7 @@
   }
 }
 
-/* Mascot is mid-call — talking, listening, nodding. The motion is
+/* Mascot is mid-call, talking, listening, nodding. The motion is
    deliberately asymmetric: a pure sine wave reads as "drifting in space,"
    but a real person on a call shifts weight, tilts to listen, leans back
    to think. The bob and the tilt run on different beats so it never
@@ -402,7 +426,7 @@
   }
 }
 
-/* Soft pink halo behind the phone — breathes in/out, like an active
+/* Soft pink halo behind the phone, breathes in/out, like an active
    call indicator on a phone screen. */
 @keyframes call-ring-breathe {
   0%,
@@ -432,7 +456,7 @@
   }
 }
 
-/* Pink left bar in the help-peek embed — scales up from the top. */
+/* Pink left bar in the help-peek embed, scales up from the top. */
 @keyframes scale-y-from-top {
   from {
     transform: scaleY(0);
@@ -469,7 +493,7 @@
   }
 }
 
-/* Parallax — element drifts vertically as it scrolls through the
+/* Parallax, element drifts vertically as it scrolls through the
    viewport. The total travel is doubled because the timeline covers
    the full cover range (entry through exit). */
 @keyframes parallax-y-up {
@@ -501,11 +525,11 @@
 
 /* Scroll-revealed elements stay hidden until the IntersectionObserver
    on the client adds .is-visible. One-shot transitions, not scrubbed
-   timelines — that's the difference between "fade in" and "scrub."
+   timelines, that's the difference between "fade in" and "scrub."
 
    Everything moves in a single direction: a subtle upward translate paired
    with a focus release (blur → 0). Sideways motion fights horizontal
-   reading flow, and "from every direction" reads as gimmicky — so the
+   reading flow, and "from every direction" reads as gimmicky, so the
    legacy .reveal-left / .reveal-right classes are mapped onto the same
    up-and-focus animation. Variety comes from staggered timing, not
    direction. */
@@ -528,7 +552,7 @@
   will-change: opacity, transform, filter;
 }
 
-/* Default body-copy reveal — small lift, soft focus release. */
+/* Default body-copy reveal, small lift, soft focus release. */
 .reveal-on-scroll,
 .reveal-on-scroll-1,
 .reveal-on-scroll-2,
@@ -542,14 +566,14 @@
 }
 
 /* Headings deserve a touch more travel and a heavier defocus so the eye
-   tracks the settle. Longer duration too — gives weight. */
+   tracks the settle. Longer duration too, gives weight. */
 .reveal-up-lg {
   filter: blur(10px);
   transform: translate3d(0, 28px, 0);
   transition-duration: 1050ms;
 }
 
-/* Cards / panels — same up motion plus a hint of scale so the surface
+/* Cards / panels, same up motion plus a hint of scale so the surface
    reads as "stepping forward" rather than just appearing. Very subtle
    on the scale axis (1.5%) so it doesn't compete with the content. */
 .reveal-scale {
@@ -558,7 +582,7 @@
 }
 
 /* Vertical accent bars (e.g. the pink rule in the help embed) keep
-   their own axis — they read as a "drawing in" gesture, not a reveal. */
+   their own axis, they read as a "drawing in" gesture, not a reveal. */
 .reveal-scale-y {
   transform: scaleY(0);
   transform-origin: top;
@@ -642,7 +666,7 @@
   animation: ping-ring 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-/* Glass variant of the primary CTA — same pink hue, but with the
+/* Glass variant of the primary CTA, same pink hue, but with the
    specular top edge and saturated backdrop that make it read as a
    refractive surface lifting off the page. */
 @utility liquid-glass-pink {
@@ -692,7 +716,7 @@
   animation-range: 0 120px;
 }
 
-/* Parallax drift — scrubs continuously while the element is in view.
+/* Parallax drift, scrubs continuously while the element is in view.
    Pair with a non-revealed wrapper so the parallax transform doesn't
    fight with reveal transitions on the same element. */
 @utility parallax-y-up {

@@ -70,7 +70,7 @@ const steps: Step[] = [
     number: "03",
     icon: ArrowUpRight01Icon,
     title: "Type s.call",
-    body: "In any text channel — and you're queued for your first match.",
+    body: "In any text channel, and you're queued for your first match.",
   },
 ];
 
@@ -125,7 +125,7 @@ export function InvitePanel() {
           />
         </a>
 
-        <p className="reveal-on-scroll-2 font-mono text-[11px] text-muted-foreground/80 uppercase tracking-[0.16em]">
+        <p className="reveal-on-scroll-2 font-mono text-[11.5px] text-muted-foreground/80 tracking-tight">
           Opens Discord · No card · Revocable any time
         </p>
       </section>
@@ -133,7 +133,7 @@ export function InvitePanel() {
       <section className="flex flex-col gap-8 border-border/60 border-t py-16">
         <div className="reveal-on-scroll flex items-end justify-between gap-6">
           <div className="flex flex-col gap-2">
-            <span className="font-medium font-mono text-[11px] text-muted-foreground uppercase tracking-[0.18em]">
+            <span className="inline-flex items-center gap-2 font-medium text-[12px] text-pink-400 tracking-tight">
               Permissions
             </span>
             <h2 className="font-semibold text-[24px] text-foreground tracking-[-0.02em] sm:text-[28px]">
@@ -185,7 +185,7 @@ export function InvitePanel() {
 
       <section className="flex flex-col gap-8 border-border/60 border-t py-16">
         <div className="reveal-on-scroll flex flex-col gap-2">
-          <span className="font-medium font-mono text-[11px] text-muted-foreground uppercase tracking-[0.18em]">
+          <span className="inline-flex items-center gap-2 font-medium text-[12px] text-pink-400 tracking-tight">
             Next
           </span>
           <h2 className="font-semibold text-[24px] text-foreground tracking-[-0.02em] sm:text-[28px]">
@@ -241,7 +241,7 @@ export function InvitePanel() {
                   Need a hand?
                 </h3>
                 <p className="max-w-md text-[13.5px] text-muted-foreground leading-[1.65]">
-                  Join the support server — real humans, fast replies, and a
+                  Join the support server, real humans, fast replies, and a
                   place to suggest features or report bugs.
                 </p>
               </div>
